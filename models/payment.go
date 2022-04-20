@@ -16,7 +16,8 @@ type CreatePaymentRequest struct {
 }
 
 type CreatePaymentResponse struct {
-	URL       string `json:"url"`
-	Token     string `json:"token"`
-	FlowOrder string `json:"flow_order"`
+	URL                string `json:"url"`
+	Token              string `json:"token"`
+	FlowOrder          string `json:"flow_order"`
+	TimeToPayInSeconds int    `json:"time_to_pay_in_seconds"`
 }
