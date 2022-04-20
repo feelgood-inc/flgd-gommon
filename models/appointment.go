@@ -20,4 +20,5 @@ type Appointment struct {
 	UpdatedAt              *time.Time     `json:"updated_at"`
 	BookedAt               *time.Time     `json:"booked_at"`
 	ReservedAt             *time.Time     `json:"reserved_at"`
+	Price                  float64        `json:"price"`
 }
