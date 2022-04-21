@@ -7,7 +7,7 @@ type Appointment struct {
 	PatientID              int64          `json:"patient_id"`
 	PractitionerID         int64          `json:"practitioner_id"`
 	ScheduledStartDateTime *time.Time     `json:"scheduled_start_date_time"`
-	ScheduleEndDateTime    *time.Time     `json:"scheduled_end_date_time"`
+	ScheduledEndDateTime   *time.Time     `json:"scheduled_end_date_time"`
 	Status                 string         `json:"status"`
 	EndedAt                *time.Time     `json:"ended_at"`
 	ElapsedTime            *time.Duration `json:"elapsed_time"`
