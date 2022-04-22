@@ -21,4 +21,5 @@ type Appointment struct {
 	ReservedAt             *time.Time `json:"reserved_at"`
 	Price                  float64    `json:"price"`
 	BatchID                string     `json:"batch_id"`
+	Timezone               string     `json:"timezone"`
 }
