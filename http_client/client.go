@@ -9,6 +9,6 @@ func Client(clientConfig *ClientConfig) *resty.Client {
 	return resty.New().SetBaseURL(clientConfig.Host + ":" + clientConfig.Port).SetHeaders(map[string]string{
 		"Content-Type": "application/json",
 		"Accept":       "application/json",
-		"User-Agent":   "vale-resty-client",
+		"User-Agent":   "flgd-resty-client",
 	}).SetRetryCount(2).SetRetryWaitTime(2 * time.Second)
 }
