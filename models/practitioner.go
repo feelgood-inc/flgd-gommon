@@ -30,3 +30,17 @@ type Practitioner struct {
 	SpecialtyUniversityName string     `json:"specialty_university_name"`
 	Status                  string     `json:"status"`
 }
+
+type PractitionerAggregated struct {
+	ID                  uint64     `json:"id"`
+	UID                 string     `json:"uid"`
+	FirstName           string     `json:"first_name"`
+	SecondName          string     `json:"second_name"`
+	LastName            string     `json:"last_name"`
+	SecondLastName      string     `json:"second_last_name"`
+	FullName            string     `json:"full_name"`
+	PracticeUniversity  University `json:"practice_university"`
+	SpecialtyUniversity University `json:"specialty_university"`
+	Practice            Practice   `json:"practice"`
+	Specialty           Specialty  `json:"specialty"`
+}
