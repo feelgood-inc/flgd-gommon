@@ -3,6 +3,7 @@ module github.com/feelgood-inc/flgd-gommon
 go 1.17
 
 require (
+	firebase.google.com/go/v4 v4.8.0
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/labstack/echo/v4 v4.6.3
 	github.com/lightstep/otel-launcher-go v1.0.0
@@ -17,7 +18,6 @@ require (
 	cloud.google.com/go/firestore v1.6.1 // indirect
 	cloud.google.com/go/iam v0.1.1 // indirect
 	cloud.google.com/go/storage v1.21.0 // indirect
-	firebase.google.com/go/v4 v4.8.0 // indirect
 	github.com/StackExchange/wmi v0.0.0-20210224194228-fe8f1750fd46 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
