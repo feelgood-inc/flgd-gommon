@@ -7,7 +7,7 @@ type Bank struct {
 }
 
 type BankAccount struct {
-	Bank    Bank   `json:"bank"`
+	BankID  int64  `json:"bank_id"`
 	Number  string `json:"number"`
 	Type    string `json:"type"`
 	Country string `json:"country"`

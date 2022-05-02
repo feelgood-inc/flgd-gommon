@@ -29,6 +29,7 @@ type Practitioner struct {
 	PracticeUniversityName  string     `json:"practice_university_name"`
 	SpecialtyUniversityName string     `json:"specialty_university_name"`
 	Status                  string     `json:"status"`
+	Slug                    string     `json:"slug"`
 }
 
 type PractitionerAggregated struct {
