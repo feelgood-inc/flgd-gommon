@@ -4,6 +4,7 @@ import "time"
 
 type Practitioner struct {
 	ID                      uint64     `json:"id"`
+	UID                     string     `json:"uid"`
 	FirstName               string     `json:"first_name"`
 	SecondName              string     `json:"second_name"`
 	LastName                string     `json:"last_name"`
