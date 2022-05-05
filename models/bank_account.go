@@ -7,9 +7,10 @@ type Bank struct {
 }
 
 type BankAccount struct {
-	BankID  int64  `json:"bank_id"`
-	Number  string `json:"number"`
-	Type    string `json:"type"`
-	Country string `json:"country"`
-	UID     string `json:"uid"`
+	BankID    int64  `json:"bank_id"`
+	Number    string `json:"number"`
+	Type      string `json:"type"`
+	Country   string `json:"country"`
+	UID       string `json:"uid"`
+	IsPrimary bool   `json:"is_primary"`
 }
