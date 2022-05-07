@@ -5,3 +5,10 @@ type Specialty struct {
 	Name       string `json:"name"`
 	PracticeID int64  `json:"practice_id"`
 }
+
+type SubSpecialty struct {
+	Id          int64  `json:"id"`
+	Name        string `json:"name"`
+	PracticeID  int64  `json:"practice_id"`
+	SpecialtyID int64  `json:"specialty_id"`
+}
