@@ -36,6 +36,9 @@ require (
 	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/sethvargo/go-envconfig v0.3.2 // indirect
 	github.com/shirou/gopsutil v3.21.5+incompatible // indirect
+	github.com/tidwall/gjson v1.14.1 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.5 // indirect
 	github.com/tklauser/numcpus v0.2.2 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
