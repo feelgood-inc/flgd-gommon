@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func SetUserInfo() echo.MiddlewareFunc {
+func SetUserInfo(withKey string) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(ctx echo.Context) error {
 			authHeader := ctx.Request().Header.Get("Authorization")
@@ -21,7 +21,7 @@ func SetUserInfo() echo.MiddlewareFunc {
 				Provider: decodedToken.Claims.(*models.FeelgoodJWTCustomClaims).Provider,
 				Type:     decodedToken.Claims.(*models.FeelgoodJWTCustomClaims).Type,
 			}
-			ctx.Set("user_info", user)
+			ctx.Set(withKey, user)
 
 			return next(ctx)
 		}
