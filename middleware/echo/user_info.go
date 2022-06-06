@@ -23,4 +23,3 @@ func SetUserInfo(withKey string) echo.MiddlewareFunc {
 		}
 	}
 }
-GO
