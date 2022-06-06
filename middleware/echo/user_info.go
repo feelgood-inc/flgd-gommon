@@ -10,13 +10,7 @@ func SetUserInfo(withKey string) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(ctx echo.Context) error {
 			authHeader := ctx.Request().Header.Get("Authorization")
-			decodedToken, err := jwt.ParseWithClaims(authHeader, &models.FeelgoodJWTClaims{}, func(token *jwt.Token) (interface{}, error) {
-				println("token: ", token)
-				return []byte("AllYourBase"), nil
-			})
-			if err != nil {
-				return ctx.JSON(401, map[string]string{"error": "Invalid token"})
-			}
+			decodedToken, _ := jwt.ParseWithClaims(authHeader, &models.FeelgoodJWTClaims{}, nil)
 			user := models.User{
 				UID:      decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.UID,
 				Email:    decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Email,
@@ -29,3 +23,4 @@ func SetUserInfo(withKey string) echo.MiddlewareFunc {
 		}
 	}
 }
+GO
