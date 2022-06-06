@@ -6,12 +6,6 @@ import (
 	"testing"
 )
 
-func TestDoCurrentRolesContainAllDesiredRoles(t *testing.T) {
-	result := DoCurrentRolesContainAllDesiredRoles(&[]string{"foo", "bar"}, &[]string{"foo", "bar"})
-	assert.NotNil(t, result)
-	assert.Truef(t, result, "DoCurrentRolesContainAnyDesiredRoles should return true")
-}
-
 func TestDoCurrentRolesContainAnyDesiredRoles(t *testing.T) {
 	result := DoCurrentRolesContainAnyDesiredRoles(&[]string{"foo", "bar"}, &[]string{"foo", "bar", "gom"})
 	assert.NotNil(t, result)
