@@ -24,5 +24,6 @@ type CreatePaymentResponse struct {
 
 type GatewayOptionalData struct {
 	ResourcePayed string      `json:"resource_payed"`
+	ResourceID    string      `json:"resource_id"`
 	Data          interface{} `json:"data"`
 }
