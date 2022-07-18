@@ -21,3 +21,8 @@ type CreatePaymentResponse struct {
 	FlowOrder          string `json:"flow_order"`
 	TimeToPayInSeconds int    `json:"time_to_pay_in_seconds"`
 }
+
+type GatewayOptionalData struct {
+	ResourcePayed string      `json:"resource_payed"`
+	Data          interface{} `json:"data"`
+}
