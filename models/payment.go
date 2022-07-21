@@ -44,18 +44,18 @@ type Payment struct {
 }
 
 type FlowPaymentStatus struct {
-	FlowOrder     uint                       `json:"flowOrder" bson:"flow_order"`
-	CommerceOrder string                     `json:"commerceOrder" bson:"commerce_order"`
-	RequestDate   string                     `json:"requestDate" bson:"request_date"`
-	Status        uint                       `json:"status" bson:"status"`
-	Subject       string                     `json:"subject" bson:"subject"`
-	Currency      string                     `json:"currency" bson:"currency"`
-	Amount        string                     `json:"amount" bson:"amount"`
-	Payer         string                     `json:"payer" bson:"payer"`
-	Optional      models.GatewayOptionalData `json:"optional" bson:"optional"`
-	PendingInfo   FlowPendingInfo            `json:"pendingInfo" bson:"pending_info"`
-	PaymentData   FlowPaymentData            `json:"paymentData" bson:"payment_data"`
-	MerchantID    string                     `json:"merchantId" bson:"merchant_id"`
+	FlowOrder     uint                `json:"flowOrder" bson:"flow_order"`
+	CommerceOrder string              `json:"commerceOrder" bson:"commerce_order"`
+	RequestDate   string              `json:"requestDate" bson:"request_date"`
+	Status        uint                `json:"status" bson:"status"`
+	Subject       string              `json:"subject" bson:"subject"`
+	Currency      string              `json:"currency" bson:"currency"`
+	Amount        string              `json:"amount" bson:"amount"`
+	Payer         string              `json:"payer" bson:"payer"`
+	Optional      GatewayOptionalData `json:"optional" bson:"optional"`
+	PendingInfo   FlowPendingInfo     `json:"pendingInfo" bson:"pending_info"`
+	PaymentData   FlowPaymentData     `json:"paymentData" bson:"payment_data"`
+	MerchantID    string              `json:"merchantId" bson:"merchant_id"`
 }
 
 type FlowPendingInfo struct {
