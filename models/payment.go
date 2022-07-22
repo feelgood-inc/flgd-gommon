@@ -41,6 +41,8 @@ type Payment struct {
 	ConversionRate                    float64     `json:"conversion_rate" bson:"conversion_rate"`
 	GatewayFee                        float64     `json:"gateway_fee" bson:"gateway_fee"`
 	GatewayTransferDateToCommerceDate time.Time   `json:"gateway_transfer_date" bson:"gateway_transfer_date_to_commerce_date"`
+	Resource                          string      `json:"resource" bson:"resource"`
+	ResourceID                        string      `json:"resource_id" bson:"resource_id"`
 }
 
 type FlowPaymentStatus struct {
