@@ -43,6 +43,8 @@ type Payment struct {
 	GatewayTransferDateToCommerceDate time.Time   `json:"gateway_transfer_date" bson:"gateway_transfer_date_to_commerce_date"`
 	Resource                          string      `json:"resource" bson:"resource"`
 	ResourceID                        string      `json:"resource_id" bson:"resource_id"`
+	Gateway                           *string     `json:"gateway" bson:"gateway"`
+	GatewayReferenceID                *string     `json:"gateway_reference_id" bson:"gateway_reference_id"`
 }
 
 type FlowPaymentStatus struct {
