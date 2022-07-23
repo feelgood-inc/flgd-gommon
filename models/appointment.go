@@ -22,8 +22,8 @@ type Appointment struct {
 	Price                  float64    `json:"price"`
 	BatchID                string     `json:"batch_id"`
 	Timezone               string     `json:"timezone"`
-	PractitionerUID        string     `json:"practitioner_uid"`
-	PatientUID             string     `json:"patient_uid"`
+	PractitionerUID        *string    `json:"practitioner_uid"`
+	PatientUID             *string    `json:"patient_uid"`
 }
 
 type AppointmentAggregated struct {
