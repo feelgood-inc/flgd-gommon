@@ -9,6 +9,9 @@ require (
 	github.com/labstack/echo/v4 v4.6.3
 	github.com/lightstep/otel-launcher-go v1.0.0
 	github.com/tidwall/gjson v1.14.1
+	go.mongodb.org/mongo-driver v1.10.0
+	gorm.io/driver/postgres v1.3.8
+	gorm.io/gorm v1.23.8
 )
 
 require (
@@ -56,11 +59,9 @@ require (
 	github.com/xdg-go/scram v1.1.1 // indirect
 	github.com/xdg-go/stringprep v1.0.3 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
-	go.mongodb.org/mongo-driver v1.10.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.opentelemetry.io/collector v0.28.0 // indirect
 	go.opentelemetry.io/contrib v0.23.0 // indirect
-	go.opentelemetry.io/contrib/instrumentation/go.mongodb.org/mongo-driver/mongo/otelmongo v0.33.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/host v0.23.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/runtime v0.23.0 // indirect
 	go.opentelemetry.io/contrib/propagators/b3 v0.23.0 // indirect
@@ -90,6 +91,4 @@ require (
 	google.golang.org/genproto v0.0.0-20220310185008-1973136f34c6 // indirect
 	google.golang.org/grpc v1.45.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
-	gorm.io/driver/postgres v1.3.8 // indirect
-	gorm.io/gorm v1.23.8 // indirect
 )
