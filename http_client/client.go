@@ -20,7 +20,7 @@ func Default() *resty.Client {
 		panic("VALE_INTERNAL_URL is not set")
 	}
 	return resty.New().
-		SetBaseURL(os.Getenv("VALE_INTERNAL_URL")).
+		SetBaseURL(internalDNSURL).
 		SetHeaders(map[string]string{
 			"Content-Type": "application/json",
 			"Accept":       "application/json",
