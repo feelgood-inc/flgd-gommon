@@ -15,7 +15,7 @@ func Client(clientConfig *ClientConfig) *resty.Client {
 }
 
 func Default() *resty.Client {
-	internalDNSURL := os.Getenv("VALE_INTERNAL_URL")
+	internalDNSURL := os.Getenv("FG_INTERNAL_URL")
 	if internalDNSURL == "" {
 		panic("VALE_INTERNAL_URL is not set")
 	}
