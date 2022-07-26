@@ -7,9 +7,9 @@ type User struct {
 	LastName       string   `json:"last_name"`
 	SecondLastName string   `json:"second_last_name"`
 	Gender         string   `json:"gender"`
+	Nationality    string   `json:"nationality"`
 	NationalID     string   `json:"national_id"`
 	Email          string   `json:"email"`
-	Provider       string   `json:"provider"`
 	Type           string   `json:"type"`
 	Roles          []string `json:"roles"`
 }
