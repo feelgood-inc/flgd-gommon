@@ -13,3 +13,19 @@ type User struct {
 	Type           *string  `json:"type"`
 	Roles          []string `json:"roles"`
 }
+
+func (u *User) IsProfileCompleted() bool {
+	return u.FirstName != nil && u.LastName != nil && u.Email != nil
+}
+
+func (u *User) GetFullName() string {
+	return *u.FirstName + " " + *u.LastName
+}
+
+func (u *User) GetFullNameWithSecondName() string {
+	return *u.FirstName + " " + *u.SecondName + " " + *u.LastName
+}
+
+func (u *User) GetFullNameWithSecondLastName() string {
+	return *u.FirstName + " " + *u.SecondName + " " + *u.LastName + " " + *u.SecondLastName
+}
