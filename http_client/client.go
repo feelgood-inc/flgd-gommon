@@ -17,14 +17,15 @@ func Client(clientConfig *ClientConfig) *resty.Client {
 func Default() *resty.Client {
 	internalDNSURL := os.Getenv("FG_INTERNAL_URL")
 	if internalDNSURL == "" {
-		panic("VALE_INTERNAL_URL is not set")
+		panic("FG_INTERNAL_URL is not set")
 	}
 	return resty.New().
 		SetBaseURL(internalDNSURL).
 		SetHeaders(map[string]string{
-			"Content-Type": "application/json",
-			"Accept":       "application/json",
-			"User-Agent":   "flgd-resty-client",
+			"Content-Type":     "application/json",
+			"Accept":           "application/json",
+			"User-Agent":       "flgd-resty-client",
+			"X-Application-ID": os.Getenv("PROJECT_NAME"),
 		}).
 		SetRetryCount(3).
 		SetRetryWaitTime(1 * time.Second)
