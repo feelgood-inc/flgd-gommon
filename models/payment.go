@@ -45,6 +45,7 @@ type Payment struct {
 	ResourceID                        string      `json:"resource_id" bson:"resource_id"`
 	Gateway                           *string     `json:"gateway" bson:"gateway"`
 	GatewayReferenceID                *string     `json:"gateway_reference_id" bson:"gateway_reference_id"`
+	InternalReferenceID               *string     `json:"internal_reference_id" bson:"internal_reference_id"`
 }
 
 type FlowPaymentStatus struct {
