@@ -31,7 +31,7 @@ type GatewayOptionalData struct {
 }
 
 type Payment struct {
-	Status                            uint        `json:"status" bson:"status"`
+	Status                            string      `json:"status" bson:"status"`
 	Amount                            float64     `json:"amount" bson:"amount"`
 	Currency                          string      `json:"currency" bson:"currency"`
 	PayerEmail                        string      `json:"payer_email" bson:"payer_email"`
@@ -45,6 +45,7 @@ type Payment struct {
 	ResourceID                        string      `json:"resource_id" bson:"resource_id"`
 	Gateway                           *string     `json:"gateway" bson:"gateway"`
 	GatewayReferenceID                *string     `json:"gateway_reference_id" bson:"gateway_reference_id"`
+	GatewayStatus                     uint        `json:"gateway_status" bson:"gateway_status"`
 	InternalReferenceID               *string     `json:"internal_reference_id" bson:"internal_reference_id"`
 }
 
