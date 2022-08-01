@@ -79,3 +79,12 @@ type FlowPaymentData struct {
 	Balance        float64 `json:"balance" bson:"balance"`
 	TransferDate   string  `json:"transferDate" bson:"transfer_date"`
 }
+
+type Refund struct {
+	ID                string    `json:"id" bson:"id"`
+	Status            uint      `json:"status" bson:"status"`
+	Amount            float64   `json:"amount" bson:"amount"`
+	Currency          string    `json:"currency" bson:"currency"`
+	Fee               float64   `json:"fee" bson:"fee"`
+	RefundRequestDate time.Time `json:"refundRequestDate" bson:"refund_request_date"`
+}
