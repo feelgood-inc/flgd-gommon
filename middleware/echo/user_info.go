@@ -12,10 +12,9 @@ func SetUserInfo(withKey string) echo.MiddlewareFunc {
 			authHeader := ctx.Request().Header.Get("Authorization")
 			decodedToken, _ := jwt.ParseWithClaims(authHeader, &models.FeelgoodJWTClaims{}, nil)
 			user := models.User{
-				UID:      decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.UID,
-				Email:    decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Email,
-				Provider: decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Provider,
-				Type:     decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Type,
+				UID:   decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.UID,
+				Email: &decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Email,
+				Type:  &decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Type,
 			}
 			ctx.Set(withKey, user)
 
