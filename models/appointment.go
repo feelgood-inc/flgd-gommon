@@ -26,6 +26,7 @@ type Appointment struct {
 	PatientUID             *string       `json:"patient_uid"`
 	Practitioner           *Practitioner `json:"practitioner,omitempty"`
 	Patient                *Patient      `json:"patient,omitempty"`
+	PracticeID             *int64        `json:"practice_id"`
 }
 
 type AppointmentAggregated struct {
