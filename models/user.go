@@ -12,6 +12,7 @@ type User struct {
 	Email          *string  `json:"email"`
 	Type           *string  `json:"type"`
 	Roles          []string `json:"roles"`
+	FullName       string   `json:"full_name"`
 }
 
 func (u *User) IsProfileCompleted() bool {
