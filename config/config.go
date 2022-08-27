@@ -59,10 +59,13 @@ type Logger struct {
 }
 
 type MongoDB struct {
-	URI      string
-	User     string
-	Password string
-	DB       string
+	URI         string
+	User        string
+	Password    string
+	DB          string
+	MaxPoolSize uint64
+	MinPoolSize uint64
+	RetryWrites bool
 }
 
 type Kafka struct {
