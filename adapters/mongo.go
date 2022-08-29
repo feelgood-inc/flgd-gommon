@@ -11,7 +11,7 @@ import (
 func CreateMongoClient(ctx context.Context, cfg *config.Config) *mongo.Client {
 	clientOptions := options.Client()
 
-	if dbOptions.URI != nil {
+	if &cfg.MongoDB.URI != nil {
 		clientOptions.ApplyURI(*dbOptions.URI)
 	}
 	clientOptions.MaxPoolSize = &cfg.MongoDB.MaxPoolSize
