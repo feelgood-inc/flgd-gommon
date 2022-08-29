@@ -68,6 +68,8 @@ require (
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.5 // indirect
 	github.com/tklauser/numcpus v0.2.2 // indirect
+	github.com/uptrace/opentelemetry-go-extra/otelgorm v0.1.15 // indirect
+	github.com/uptrace/opentelemetry-go-extra/otelsql v0.1.15 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
@@ -87,7 +89,7 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.0.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.0.0 // indirect
 	go.opentelemetry.io/otel/internal/metric v0.23.0 // indirect
-	go.opentelemetry.io/otel/metric v0.23.0 // indirect
+	go.opentelemetry.io/otel/metric v0.31.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.4.1 // indirect
 	go.opentelemetry.io/otel/sdk/export/metric v0.23.0 // indirect
 	go.opentelemetry.io/otel/sdk/metric v0.23.0 // indirect

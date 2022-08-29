@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/feelgood-inc/flgd-gommon/config"
+	"github.com/uptrace/opentelemetry-go-extra/otelgorm"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -19,6 +20,10 @@ func CreatePostgresClient(ctx context.Context, cfg *config.Config) *gorm.DB {
 	)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
+		panic(err)
+	}
+
+	if err := db.Use(otelgorm.NewPlugin()); err != nil {
 		panic(err)
 	}
 
