@@ -3,19 +3,19 @@ package adapters
 import (
 	"context"
 	"fmt"
-	"github.com/feelgood-inc/flgd-gommon/models"
+	"github.com/feelgood-inc/flgd-gommon/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-func CreatePostgresClient(ctx context.Context, dbOptions *models.DBOptions) *gorm.DB {
+func CreatePostgresClient(ctx context.Context, cfg *config.Config) *gorm.DB {
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=%s",
-		*dbOptions.Host,
-		*dbOptions.User,
-		*dbOptions.Password,
-		dbOptions.DBName,
-		dbOptions.Port,
-		*dbOptions.TimeZone,
+		cfg.Postgres.Host,
+		cfg.Postgres.User,
+		cfg.Postgres.Password,
+		cfg.Postgres.DB,
+		cfg.Postgres.Port,
+		*cfg.Postgres.TimeZone,
 	)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {

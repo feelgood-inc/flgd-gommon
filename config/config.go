@@ -24,6 +24,7 @@ type Config struct {
 	Redis       Redis
 	Sentry      Sentry
 	Lightstep   Lightstep
+	Postgres    Postgres
 }
 
 // Server config
@@ -72,6 +73,15 @@ type MongoDB struct {
 	MaxPoolSize uint64
 	MinPoolSize uint64
 	RetryWrites bool
+}
+
+type Postgres struct {
+	Host     string
+	User     string
+	Password string
+	DB       string
+	Port     string
+	TimeZone *string
 }
 
 type Kafka struct {
