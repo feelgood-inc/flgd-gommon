@@ -1,9 +1,11 @@
 package httpclient
 
 import (
-	resty "github.com/go-resty/resty/v2"
 	"os"
 	"time"
+
+	"github.com/feelgood-inc/flgd-gommon/config"
+	resty "github.com/go-resty/resty/v2"
 )
 
 func Client(clientConfig *ClientConfig) *resty.Client {
@@ -29,4 +31,17 @@ func Default() *resty.Client {
 		}).
 		SetRetryCount(3).
 		SetRetryWaitTime(1 * time.Second)
+}
+
+func Internal(cfg *config.Config) *resty.Client {
+	return resty.New().
+		SetBaseURL(cfg.HTTPClient.InternalURL).
+		SetHeaders(map[string]string{
+			"Content-Type":     "application/json",
+			"Accept":           "application/json",
+			"User-Agent":       "flgd-resty-client",
+			"X-Application-ID": cfg.ServiceName,
+		}).
+		SetRetryCount(cfg.HTTPClient.RetryCount).
+		SetRetryWaitTime(cfg.HTTPClient.RetryWaitTime)
 }

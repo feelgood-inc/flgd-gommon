@@ -25,6 +25,7 @@ type Config struct {
 	Sentry      Sentry
 	Lightstep   Lightstep
 	Postgres    Postgres
+	HTTPClient  HTTPClient
 }
 
 // Server config
@@ -63,6 +64,13 @@ type Logger struct {
 	DisableStacktrace bool
 	Encoding          string
 	Level             string
+}
+
+type HTTPClient struct {
+	InternalURL    string
+	XApplicationID *string
+	RetryCount     int
+	RetryWaitTime  time.Duration
 }
 
 type MongoDB struct {
