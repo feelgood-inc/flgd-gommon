@@ -31,6 +31,7 @@ type GatewayOptionalData struct {
 }
 
 type Payment struct {
+	ID                                uint        `json:"id" bson:"id"`
 	Status                            string      `json:"status" bson:"status"`
 	Amount                            float64     `json:"amount" bson:"amount"`
 	Currency                          string      `json:"currency" bson:"currency"`
