@@ -14,14 +14,16 @@ const (
 
 // Config of application
 type Config struct {
-	AppVersion string
-	Server     Server
-	Logger     Logger
-	MongoDB    MongoDB
-	Kafka      Kafka
-	Http       Http
-	Redis      Redis
-	Sentry     Sentry
+	AppVersion  string
+	ServiceName string
+	Server      Server
+	Logger      Logger
+	MongoDB     MongoDB
+	Kafka       Kafka
+	Http        Http
+	Redis       Redis
+	Sentry      Sentry
+	Lightstep   Lightstep
 }
 
 // Server config
@@ -44,6 +46,10 @@ type Http struct {
 	WriteTimeout      time.Duration
 	CookieLifeTime    int
 	SessionCookieName string
+}
+
+type Lightstep struct {
+	AccessToken string
 }
 
 type Sentry struct {

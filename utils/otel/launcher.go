@@ -1,6 +1,7 @@
 package otel
 
 import (
+	"github.com/feelgood-inc/flgd-gommon/config"
 	"github.com/lightstep/otel-launcher-go/launcher"
 )
 
@@ -9,7 +10,7 @@ type LauncherConfig struct {
 	AccessToken string
 }
 
-func NewLauncher(config *LauncherConfig) *launcher.Launcher {
+func NewLauncher(cfg *config.Config) *launcher.Launcher {
 	ls := launcher.ConfigureOpentelemetry(
 		launcher.WithServiceName(config.ServiceName),
 		launcher.WithAccessToken(config.AccessToken),
