@@ -14,18 +14,19 @@ const (
 
 // Config of application
 type Config struct {
-	AppVersion  string
-	ServiceName string
-	Server      Server
-	Logger      Logger
-	MongoDB     MongoDB
-	Kafka       Kafka
-	Http        Http
-	Redis       Redis
-	Sentry      Sentry
-	Lightstep   Lightstep
-	Postgres    Postgres
-	HTTPClient  HTTPClient
+	AppVersion      string
+	ServiceName     string
+	ServiceMainPath string
+	Server          Server
+	Logger          Logger
+	MongoDB         MongoDB
+	Kafka           Kafka
+	Http            Http
+	Redis           Redis
+	Sentry          Sentry
+	Lightstep       Lightstep
+	Postgres        Postgres
+	HTTPClient      HTTPClient
 }
 
 // Server config
