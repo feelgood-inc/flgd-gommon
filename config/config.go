@@ -89,7 +89,7 @@ type Postgres struct {
 	User     string
 	Password string
 	DB       string
-	Port     string
+	Port     uint64
 	TimeZone *string
 }
 
