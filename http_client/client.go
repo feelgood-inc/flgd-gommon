@@ -45,3 +45,14 @@ func Internal(cfg *config.Config) *resty.Client {
 		SetRetryCount(cfg.HTTPClient.RetryCount).
 		SetRetryWaitTime(cfg.HTTPClient.RetryWaitTime)
 }
+
+func External(cfg *config.Config) *resty.Client {
+	return resty.New().
+		SetHeaders(map[string]string{
+			"Content-Type": "application/json",
+			"Accept":       "application/json",
+			"User-Agent":   "flgd-resty-client",
+		}).
+		SetRetryCount(cfg.HTTPClient.RetryCount).
+		SetRetryWaitTime(cfg.HTTPClient.RetryWaitTime)
+}
