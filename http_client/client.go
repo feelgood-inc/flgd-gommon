@@ -53,6 +53,6 @@ func External(cfg *config.Config) *resty.Client {
 			"Accept":       "application/json",
 			"User-Agent":   "flgd-resty-client",
 		}).
-		SetRetryCount(cfg.HTTPClient.RetryCount).
-		SetRetryWaitTime(cfg.HTTPClient.RetryWaitTime)
+		SetRetryCount(3).
+		SetRetryWaitTime(1 * time.Second)
 }
