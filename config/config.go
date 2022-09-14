@@ -57,7 +57,8 @@ type Lightstep struct {
 }
 
 type Sentry struct {
-	SentryDSN string
+	SentryDSN        string
+	TracesSampleRate float64
 }
 
 // Logger config

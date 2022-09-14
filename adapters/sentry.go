@@ -8,8 +8,9 @@ import (
 
 func CreateSentry(cfg *config.Config) error {
 	if err := sentry.Init(sentry.ClientOptions{
-		Dsn:         cfg.Sentry.SentryDSN,
-		Environment: cfg.Env,
+		Dsn:              cfg.Sentry.SentryDSN,
+		Environment:      cfg.Env,
+		TracesSampleRate: cfg.Sentry.TracesSampleRate,
 	}); err != nil {
 		fmt.Printf("Sentry initialization failed: %v\n", err)
 		return err
