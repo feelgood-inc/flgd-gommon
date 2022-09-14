@@ -15,6 +15,7 @@ const (
 // Config of application
 type Config struct {
 	AppVersion      string
+	Env             string
 	ServiceName     string
 	ServiceMainPath string
 	Server          Server
