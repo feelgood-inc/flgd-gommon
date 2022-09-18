@@ -106,7 +106,7 @@ type Redis struct {
 	RedisDefaultDB string
 	MinIdleConn    int
 	PoolSize       int
-	PoolTimeout    int
+	PoolTimeout    time.Duration
 	Password       string
 	DB             int
 }
