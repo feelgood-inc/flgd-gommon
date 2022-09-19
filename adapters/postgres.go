@@ -9,6 +9,7 @@ import (
 )
 
 type PostgresConfig struct {
+	URL      string
 	Host     string
 	Port     int
 	DB       string
@@ -17,6 +18,17 @@ type PostgresConfig struct {
 }
 
 func CreatePostgresClient(ctx context.Context, postgresConfig PostgresConfig) *gorm.DB {
+	if postgresConfig.URL != "" {
+		postgresDB, err := gorm.Open(postgres.Open(postgresConfig.URL), &gorm.Config{})
+		if err != nil {
+			panic(err)
+		}
+		if err := postgresDB.Use(otelgorm.NewPlugin()); err != nil {
+			panic(err)
+		}
+		return postgresDB
+	}
+
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable",
 		postgresConfig.Host,
 		postgresConfig.User,
@@ -24,14 +36,14 @@ func CreatePostgresClient(ctx context.Context, postgresConfig PostgresConfig) *g
 		postgresConfig.DB,
 		postgresConfig.Port,
 	)
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	postgresDB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
 
-	if err := db.Use(otelgorm.NewPlugin()); err != nil {
+	if err := postgresDB.Use(otelgorm.NewPlugin()); err != nil {
 		panic(err)
 	}
 
-	return db
+	return postgresDB
 }
