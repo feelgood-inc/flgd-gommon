@@ -17,7 +17,7 @@ type MongoConfig struct {
 func CreateMongoClient(ctx context.Context, mongoConfig MongoConfig) *mongo.Client {
 	clientOptions := options.Client()
 
-	if &cfg.MongoDB.URI != nil {
+	if &mongoConfig.URI != nil {
 		clientOptions.ApplyURI(mongoConfig.URI)
 	}
 	clientOptions.MaxPoolSize = &mongoConfig.MaxPoolSize
