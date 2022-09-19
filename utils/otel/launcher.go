@@ -14,7 +14,7 @@ type LauncherConfig struct {
 func NewLauncher(cfg *config.Config) *launcher.Launcher {
 	ls := launcher.ConfigureOpentelemetry(
 		launcher.WithServiceName(cfg.ServiceName),
-		launcher.WithAccessToken(os.Getenv("LIGHTSTEP_ACCESS_TOKEN")),
+		launcher.WithAccessToken(os.Getenv("$LIGHTSTEP_ACCESS_TOKEN")),
 	)
 
 	return &ls
