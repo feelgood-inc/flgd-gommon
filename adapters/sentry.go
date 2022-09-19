@@ -2,16 +2,20 @@ package adapters
 
 import (
 	"fmt"
-	"github.com/feelgood-inc/flgd-gommon/config"
 	"github.com/getsentry/sentry-go"
-	"os"
 )
 
-func CreateSentry(cfg *config.Config) error {
+type SentryConfig struct {
+	DSN              string
+	Env              string
+	TracesSampleRate float64
+}
+
+func CreateSentry(sentryConfig SentryConfig) error {
 	if err := sentry.Init(sentry.ClientOptions{
-		Dsn:              os.Getenv("SENTRY_DSN"),
-		Environment:      cfg.Env,
-		TracesSampleRate: cfg.Sentry.TracesSampleRate,
+		Dsn:              sentryConfig.DSN,
+		Environment:      sentryConfig.Env,
+		TracesSampleRate: sentryConfig.TracesSampleRate,
 	}); err != nil {
 		fmt.Printf("Sentry initialization failed: %v\n", err)
 		return err
