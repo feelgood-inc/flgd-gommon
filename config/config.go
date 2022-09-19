@@ -14,10 +14,10 @@ const (
 
 // Config of application
 type Config struct {
-	AppVersion      string
-	Env             string
-	ServiceName     string
-	ServiceMainPath string
+	AppVersion      string `mapstructure:"APP_VERSION"`
+	Env             string `mapstructure:"ENV"`
+	ServiceName     string `mapstructure:"SERVICE_NAME"`
+	ServiceMainPath string `mapstructure:"SERVICE_MAIN_PATH"`
 	Server          Server
 	Logger          Logger
 	MongoDB         MongoDB
@@ -32,8 +32,8 @@ type Config struct {
 
 // Server config
 type Server struct {
-	Port              string
-	Development       bool
+	Port              string `mapstructure:"PORT"`
+	Development       bool   `mapstructure:"DEVELOPMENT"`
 	Timeout           time.Duration
 	ReadTimeout       time.Duration
 	WriteTimeout      time.Duration
@@ -43,7 +43,7 @@ type Server struct {
 }
 
 type Http struct {
-	Port              string
+	Port              string `mapstructure:"HTTP_PORT"`
 	PprofPort         string
 	Timeout           time.Duration
 	ReadTimeout       time.Duration
@@ -53,72 +53,80 @@ type Http struct {
 }
 
 type Lightstep struct {
-	AccessToken string
+	AccessToken string `mapstructure:"LIGHTSTEP_ACCESS_TOKEN"`
 }
 
 type Sentry struct {
-	SentryDSN        string
-	TracesSampleRate float64
+	SentryDSN        string  `mapstructure:"SENTRY_DSN"`
+	TracesSampleRate float64 `mapstructure:"SENTRY_TRACES_SAMPLE_RATE"`
 }
 
 // Logger config
 type Logger struct {
-	DisableCaller     bool
-	DisableStacktrace bool
-	Encoding          string
-	Level             string
+	DisableCaller     bool   `mapstructure:"LOGGER_DISABLE_CALLER"`
+	DisableStacktrace bool   `mapstructure:"LOGGER_DISABLE_STACKTRACE"`
+	Encoding          string `mapstructure:"LOGGER_ENCODING"`
+	Level             string `mapstructure:"LOGGER_LEVEL"`
 }
 
 type HTTPClient struct {
-	InternalURL    string
-	XApplicationID *string
-	RetryCount     int
+	InternalURL    string  `mapstructure:"INTERNAL_URL"`
+	XApplicationID *string `mapstructure:"X_APPLICATION_ID"`
+	RetryCount     int     `mapstructure:"RETRY_COUNT"`
 	RetryWaitTime  time.Duration
 }
 
 type MongoDB struct {
-	URI         string
-	User        string
-	Password    string
-	DB          string
+	URI         string `mapstructure:"MONGODB_URI"`
+	User        string `mapstructure:"MONGODB_USER"`
+	Password    string `mapstructure:"MONGODB_PASSWORD"`
+	DB          string `mapstructure:"MONGODB_DB"`
 	MaxPoolSize uint64
 	MinPoolSize uint64
 	RetryWrites bool
 }
 
 type Postgres struct {
-	Host     string
-	User     string
-	Password string
-	DB       string
-	Port     uint64
-	TimeZone *string
+	Host     string  `mapstructure:"POSTGRES_HOST"`
+	User     string  `mapstructure:"POSTGRES_USER"`
+	Password string  `mapstructure:"POSTGRES_PASSWORD"`
+	DB       string  `mapstructure:"POSTGRES_DB"`
+	Port     uint64  `mapstructure:"POSTGRES_PORT"`
+	TimeZone *string `mapstructure:"POSTGRES_TIMEZONE"`
 }
 
 type Kafka struct {
-	Brokers []string
+	Brokers  []string `mapstructure:"KAFKA_BROKERS"`
+	Username string   `mapstructure:"KAFKA_USERNAME"`
 }
 
 type Redis struct {
-	RedisAddr      string
-	RedisPassword  string
-	RedisDB        string
-	RedisDefaultDB string
+	RedisAddr      string  `mapstructure:"REDIS_ADDR"`
+	RedisPassword  *string `mapstructure:"REDIS_PASSWORD"`
+	RedisDB        string  `mapstructure:"REDIS_DB"`
+	RedisDefaultDB string  `mapstructure:"REDIS_DEFAULT_DB"`
 	MinIdleConn    int
 	PoolSize       int
 	PoolTimeout    time.Duration
-	Password       string
 	DB             int
 }
 
 func exportConfig() error {
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath("./config")
-	if os.Getenv("MODE") == "DOCKER" {
-		viper.SetConfigName("config-docker.yml")
-	} else {
-		viper.SetConfigName("config.yaml")
+
+	switch os.Getenv("MODE") {
+	case "LOCAL":
+		viper.SetConfigName("local")
+	case "DEV":
+		viper.SetConfigName("dev")
+	case "prod":
+		viper.SetConfigName("prod")
+	default:
+		viper.SetConfigName("local")
 	}
+
+	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {
 		return err

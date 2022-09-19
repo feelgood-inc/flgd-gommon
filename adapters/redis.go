@@ -9,9 +9,8 @@ import (
 
 func CreateRedisClient(ctx context.Context, cfg *config.Config) *redis.Client {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     cfg.Redis.RedisAddr,
-		Password: cfg.Redis.RedisPassword, // no password set
-		DB:       cfg.Redis.DB,            // use default DB
+		Addr: cfg.Redis.RedisAddr,
+		DB:   cfg.Redis.DB, // use default DB
 	})
 	rdb.AddHook(redisotel.NewTracingHook())
 
