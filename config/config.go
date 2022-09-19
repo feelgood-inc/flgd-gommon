@@ -14,10 +14,10 @@ const (
 
 // Config of application
 type Config struct {
-	AppVersion      string
-	Env             string
-	ServiceName     string
-	ServiceMainPath string
+	AppVersion      string `mapstructure:"APP_VERSION"`
+	Env             string `mapstructure:"ENV"`
+	ServiceName     string `mapstructure:"SERVICE_NAME"`
+	ServiceMainPath string `mapstructure:"SERVICE_MAIN_PATH"`
 	Server          Server
 	Logger          Logger
 	MongoDB         MongoDB
@@ -120,7 +120,7 @@ func exportConfig() error {
 		viper.SetConfigName("local")
 	case "DEV":
 		viper.SetConfigName("dev")
-	case "prod":
+	case "PROD":
 		viper.SetConfigName("prod")
 	default:
 		viper.SetConfigName("local")

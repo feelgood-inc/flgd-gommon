@@ -5,6 +5,7 @@ import (
 	"github.com/feelgood-inc/flgd-gommon/config"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"os"
 	"time"
 )
 
@@ -12,7 +13,7 @@ func CreateMongoClient(ctx context.Context, cfg *config.Config) *mongo.Client {
 	clientOptions := options.Client()
 
 	if &cfg.MongoDB.URI != nil {
-		clientOptions.ApplyURI(cfg.MongoDB.URI)
+		clientOptions.ApplyURI(os.Getenv("MONGODB_URI"))
 	}
 	clientOptions.MaxPoolSize = &cfg.MongoDB.MaxPoolSize
 	clientOptions.MinPoolSize = &cfg.MongoDB.MinPoolSize
