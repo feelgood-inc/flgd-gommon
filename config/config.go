@@ -14,10 +14,10 @@ const (
 
 // Config of application
 type Config struct {
-	AppVersion      string `mapstructure:"APP_VERSION"`
-	Env             string `mapstructure:"ENV"`
-	ServiceName     string `mapstructure:"SERVICE_NAME"`
-	ServiceMainPath string `mapstructure:"SERVICE_MAIN_PATH"`
+	AppVersion      string
+	Env             string
+	ServiceName     string
+	ServiceMainPath string
 	Server          Server
 	Logger          Logger
 	MongoDB         MongoDB
