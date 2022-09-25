@@ -9,14 +9,23 @@ import (
 type RedisConfig struct {
 	Addr string
 	DB   int
+	URL  string
 }
 
 func CreateRedisClient(ctx context.Context, redisConfig RedisConfig) *redis.Client {
-	rdb := redis.NewClient(&redis.Options{
-		Addr: redisConfig.Addr,
-		DB:   redisConfig.DB, // use default DB
-	})
-	rdb.AddHook(redisotel.NewTracingHook())
+	var redisClient *redis.Client
 
-	return rdb
+	if redisConfig.Addr != "" {
+		opt, _ := redis.ParseURL(redisConfig.URL)
+		redisClient = redis.NewClient(opt)
+	} else {
+		redisClient = redis.NewClient(&redis.Options{
+			Addr: redisConfig.Addr,
+			DB:   redisConfig.DB, // use default DB
+		})
+	}
+
+	redisClient.AddHook(redisotel.NewTracingHook())
+
+	return redisClient
 }
