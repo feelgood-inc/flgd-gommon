@@ -15,7 +15,7 @@ type RedisConfig struct {
 func CreateRedisClient(ctx context.Context, redisConfig RedisConfig) *redis.Client {
 	var redisClient *redis.Client
 
-	if redisConfig.Addr != "" {
+	if redisConfig.URL != "" {
 		opt, _ := redis.ParseURL(redisConfig.URL)
 		redisClient = redis.NewClient(opt)
 	} else {
