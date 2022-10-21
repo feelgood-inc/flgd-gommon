@@ -2,6 +2,7 @@ package adapters
 
 import (
 	"context"
+	"crypto/tls"
 	"github.com/feelgood-inc/flgd-gommon/config"
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/sasl/scram"
@@ -37,6 +38,7 @@ func NewWriterWithMechanism(cfg *KafkaWriterWithMechanismConfig) *kafka.Writer {
 
 	transport := &kafka.Transport{
 		SASL: mechanism,
+		TLS:  &tls.Config{},
 	}
 
 	return &kafka.Writer{
@@ -47,4 +49,14 @@ func NewWriterWithMechanism(cfg *KafkaWriterWithMechanismConfig) *kafka.Writer {
 		MaxAttempts: cfg.MaxAttempts,
 		Transport:   transport,
 	}
+}
+
+func NewReaderWithTLS(cfg *KafkaConnectionConfig) *kafka.Reader {
+	return kafka.NewReader(kafka.ReaderConfig{
+		Brokers:   cfg.Brokers,
+		Topic:     "test",
+		Partition: 0,
+		MinBytes:  10e3, // 10KB
+		MaxBytes:  10e6, // 10MB
+	})
 }
