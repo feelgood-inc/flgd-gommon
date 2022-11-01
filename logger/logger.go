@@ -48,8 +48,8 @@ var loggerLevelMap = map[string]zapcore.Level{
 	"fatal":  zapcore.FatalLevel,
 }
 
-func (l *apiLogger) getLoggerLevel(cfg *config.Config) zapcore.Level {
-	level, exist := loggerLevelMap[cfg.Logger.Level]
+func (l *apiLogger) getLoggerLevel(lvl string) zapcore.Level {
+	level, exist := loggerLevelMap[lvl]
 	if !exist {
 		return zapcore.DebugLevel
 	}
@@ -58,8 +58,8 @@ func (l *apiLogger) getLoggerLevel(cfg *config.Config) zapcore.Level {
 }
 
 // InitLogger Init logger
-func (l *apiLogger) InitLogger() {
-	logLevel := l.getLoggerLevel(l.cfg)
+func (l *apiLogger) InitLogger(level string) {
+	logLevel := l.getLoggerLevel(level)
 
 	logWriter := zapcore.AddSync(os.Stderr)
 
