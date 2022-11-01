@@ -10,7 +10,7 @@ import (
 
 // Logger methods interface
 type Logger interface {
-	InitLogger()
+	InitLogger(level string)
 	Debug(args ...interface{})
 	Debugf(template string, args ...interface{})
 	Info(args ...interface{})
