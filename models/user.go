@@ -15,6 +15,17 @@ type User struct {
 	FullName       string   `json:"full_name"`
 }
 
+type NonPublicUser struct {
+	UID            string  `json:"uid"`
+	FirstName      *string `json:"first_name"`
+	SecondName     *string `json:"second_name"`
+	LastName       *string `json:"last_name"`
+	SecondLastName *string `json:"second_last_name"`
+	Gender         *string
+	Nationality    *string
+	FullName       string `json:"full_name"`
+}
+
 func (u *User) IsProfileCompleted() bool {
 	return u.FirstName != nil && u.LastName != nil && u.Email != nil
 }
@@ -29,4 +40,15 @@ func (u *User) GetFullNameWithSecondName() string {
 
 func (u *User) GetFullNameWithSecondLastName() string {
 	return *u.FirstName + " " + *u.SecondName + " " + *u.LastName + " " + *u.SecondLastName
+}
+
+func (u *User) ToNonPublicUser() *NonPublicUser {
+	return &NonPublicUser{
+		UID:            u.UID,
+		FirstName:      u.FirstName,
+		SecondName:     u.SecondName,
+		LastName:       u.LastName,
+		SecondLastName: u.SecondLastName,
+		FullName:       u.FullName,
+	}
 }
