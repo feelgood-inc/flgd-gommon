@@ -10,22 +10,13 @@ import (
 func SetUserInfo(withKey string) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(ctx echo.Context) error {
-			var jwtToken string
-			authCookie, err := ctx.Request().Cookie("Authorization")
-			if err != nil {
-				return ctx.JSON(http.StatusUnauthorized, "Unauthorized")
-			} else {
-				jwtToken = authCookie.Value
-			}
-
-			authHeader := ctx.Request().Header.Get("Authorization")
+			// The header is set at the proxy level, so we can trust it
+			authHeader := ctx.Request().Header.Get("fg-token")
 			if authHeader == "" {
 				return ctx.JSON(http.StatusUnauthorized, "Unauthorized")
-			} else {
-				jwtToken = authHeader
 			}
 
-			decodedToken, _ := jwt.ParseWithClaims(jwtToken, &models.FeelgoodJWTClaims{}, nil)
+			decodedToken, _ := jwt.ParseWithClaims(authHeader, &models.FeelgoodJWTClaims{}, nil)
 			user := models.User{
 				UID:   decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.UID,
 				Email: &decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Email,
