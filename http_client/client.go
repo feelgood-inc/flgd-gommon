@@ -34,7 +34,7 @@ func Default() *resty.Client {
 }
 
 func Internal(cfg *config.Config) *resty.Client {
-	return resty.New().
+	customClient := resty.New().
 		SetBaseURL(cfg.HTTPClient.InternalURL).
 		SetHeaders(map[string]string{
 			"Content-Type":     "application/json",
@@ -44,6 +44,12 @@ func Internal(cfg *config.Config) *resty.Client {
 		}).
 		SetRetryCount(cfg.HTTPClient.RetryCount).
 		SetRetryWaitTime(cfg.HTTPClient.RetryWaitTime)
+
+	if cfg.HTTPClient.Debug {
+		customClient.SetDebug(true)
+	}
+
+	return customClient
 }
 
 func External(cfg *config.Config) *resty.Client {

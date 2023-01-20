@@ -74,6 +74,7 @@ type HTTPClient struct {
 	XApplicationID *string `mapstructure:"X_APPLICATION_ID"`
 	RetryCount     int     `mapstructure:"RETRY_COUNT"`
 	RetryWaitTime  time.Duration
+	Debug          bool
 }
 
 type MongoDB struct {
