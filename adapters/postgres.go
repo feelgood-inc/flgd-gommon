@@ -19,7 +19,9 @@ type PostgresConfig struct {
 
 func CreatePostgresClient(ctx context.Context, postgresConfig PostgresConfig) *gorm.DB {
 	if postgresConfig.URL != "" {
-		postgresDB, err := gorm.Open(postgres.Open(postgresConfig.URL), &gorm.Config{})
+		postgresDB, err := gorm.Open(postgres.Open(postgresConfig.URL), &gorm.Config{
+			PrepareStmt: false,
+		})
 		if err != nil {
 			panic(err)
 		}
