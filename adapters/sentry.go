@@ -10,6 +10,7 @@ type SentryConfig struct {
 	Env              string
 	TracesSampleRate float64
 	TracesSampler    sentry.TracesSampler
+	EnableTracing    bool
 }
 
 func CreateSentry(sentryConfig SentryConfig) error {
@@ -17,7 +18,7 @@ func CreateSentry(sentryConfig SentryConfig) error {
 		Dsn:              sentryConfig.DSN,
 		Environment:      sentryConfig.Env,
 		TracesSampleRate: sentryConfig.TracesSampleRate,
-		TracesSampler:    sentryConfig.TracesSampler,
+		EnableTracing:    sentryConfig.EnableTracing,
 	}); err != nil {
 		fmt.Printf("Sentry initialization failed: %v\n", err)
 		return err
