@@ -1,10 +1,11 @@
 package middleware
 
 import (
+	"net/http"
+
 	"github.com/feelgood-inc/flgd-gommon/models"
 	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
-	"net/http"
 )
 
 func SetUserInfo(withKey string) echo.MiddlewareFunc {
