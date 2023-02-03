@@ -10,8 +10,6 @@ type Appointment struct {
 	ScheduledEndDateTime   *time.Time    `json:"scheduled_end_date_time"`
 	Status                 string        `json:"status"`
 	EndedAt                *time.Time    `json:"ended_at"`
-	AvailableInsurances    *[]string     `json:"available_insurances"`
-	AvailableServices      *[]string     `json:"available_services"`
 	InternalID             string        `json:"internal_id"`
 	DurationInSeconds      int64         `json:"duration_in_seconds"`
 	ElapsedTimeInSeconds   int64         `json:"elapsed_time_in_seconds"`
@@ -37,8 +35,6 @@ type AppointmentAggregated struct {
 	ScheduledEndDateTime   *time.Time    `json:"scheduled_end_date_time"`
 	Status                 string        `json:"status"`
 	EndedAt                *time.Time    `json:"ended_at"`
-	AvailableInsurances    *[]string     `json:"available_insurances"`
-	AvailableServices      *[]string     `json:"available_services"`
 	InternalID             string        `json:"internal_id"`
 	DurationInSeconds      int64         `json:"duration_in_seconds"`
 	ElapsedTimeInSeconds   int64         `json:"elapsed_time_in_seconds"`
