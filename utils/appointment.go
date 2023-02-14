@@ -31,10 +31,18 @@ func GetAmountsBreakdownForAppointmentCancellation(payload GetAmountsBreakdownFo
 	return breakdownForPercentage(payload.AmountPayed, percentageToReimburseBeforeThreshold, payload.PlatformFee), nil
 }
 
-func breakdownForPercentage(amountPayed float64, percentage float64, platformFee float64) AmountsBreakdown {
+func breakdownForPercentage(amountPayed, percentage, platformFee float64) AmountsBreakdown {
+	percentageToReimburse := percentage
+	platformFeePercentage := platformFee
+
+	reimbursementAmount := amountPayed * percentageToReimburse
+	remainingAmount := amountPayed - reimbursementAmount
+	paymentToPractitioner := remainingAmount * (1 - platformFeePercentage)
+	paymentToPlatform := remainingAmount * platformFeePercentage
+
 	return AmountsBreakdown{
-		PractitionerPaymentAmount: (amountPayed * percentage) - ((amountPayed * percentage) * (platformFee)),
-		ReimbursementAmount:       amountPayed * (1 - percentage),
-		PlatformFeeAmount:         (amountPayed * percentage) * (platformFee),
+		PractitionerPaymentAmount: paymentToPractitioner,
+		ReimbursementAmount:       reimbursementAmount,
+		PlatformFeeAmount:         paymentToPlatform,
 	}
 }
