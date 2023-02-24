@@ -23,8 +23,7 @@ func NewLauncher(config LauncherConfig) launcher.Launcher {
 		launcher.WithAccessToken(config.AccessToken),
 		launcher.WithSpanExporterEndpoint(endpoint),
 		launcher.WithMetricExporterEndpoint(endpoint),
-		launcher.
-			launcher.WithPropagators([]string{"tracecontext", "baggage"}),
+		launcher.WithPropagators([]string{"tracecontext", "baggage"}),
 		launcher.WithResourceAttributes(map[string]string{
 			string(semconv.ContainerNameKey):         config.ServiceName,
 			string(semconv.DeploymentEnvironmentKey): config.Env,
