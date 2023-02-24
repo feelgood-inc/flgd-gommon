@@ -3,14 +3,14 @@ package adapters
 import (
 	"context"
 	"errors"
-	"github.com/lightstep/otel-launcher-go/launcher"
+	"os"
+
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.10.0"
-	"os"
 )
 
 type LauncherConfig struct {
@@ -32,15 +32,6 @@ type TraceProviderConfig struct {
 type Config struct {
 	ExporterConfig      ExporterConfig
 	TraceProviderConfig TraceProviderConfig
-}
-
-func NewLauncher(launcherConfig LauncherConfig) *launcher.Launcher {
-	ls := launcher.ConfigureOpentelemetry(
-		launcher.WithServiceName(launcherConfig.ServiceName),
-		launcher.WithAccessToken(launcherConfig.AccessToken),
-	)
-
-	return &ls
 }
 
 func newExporter(ctx context.Context, config ExporterConfig) (*otlptrace.Exporter, error) {
