@@ -34,7 +34,7 @@ type Config struct {
 	TraceProviderConfig TraceProviderConfig
 }
 
-func newLauncher(launcherConfig LauncherConfig) *launcher.Launcher {
+func NewLauncher(launcherConfig LauncherConfig) *launcher.Launcher {
 	ls := launcher.ConfigureOpentelemetry(
 		launcher.WithServiceName(launcherConfig.ServiceName),
 		launcher.WithAccessToken(launcherConfig.AccessToken),
