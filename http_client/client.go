@@ -1,8 +1,6 @@
 package httpclient
 
 import (
-	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
-	"net/http"
 	"os"
 	"time"
 
@@ -37,7 +35,7 @@ func Default() *resty.Client {
 
 func Internal(cfg *config.Config) *resty.Client {
 	customClient := resty.New().
-		SetTransport(otelhttp.NewTransport(http.DefaultTransport)).
+		// SetTransport(otelhttp.NewTransport(http.DefaultTransport)).
 		SetBaseURL(cfg.HTTPClient.InternalURL).
 		SetHeaders(map[string]string{
 			"Content-Type":     "application/json",
@@ -57,7 +55,7 @@ func Internal(cfg *config.Config) *resty.Client {
 
 func External(cfg *config.Config) *resty.Client {
 	return resty.New().
-		SetTransport(otelhttp.NewTransport(http.DefaultTransport)).
+		// SetTransport(otelhttp.NewTransport(http.DefaultTransport)).
 		SetHeaders(map[string]string{
 			"Content-Type": "application/json",
 			"Accept":       "application/json",
