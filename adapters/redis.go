@@ -2,8 +2,8 @@ package adapters
 
 import (
 	"context"
-	"github.com/go-redis/redis/extra/redisotel/v9"
-	"github.com/go-redis/redis/v9"
+	"github.com/redis/go-redis/extra/redisotel/v9"
+	"github.com/redis/go-redis/v9"
 )
 
 type RedisConfig struct {
@@ -13,19 +13,23 @@ type RedisConfig struct {
 }
 
 func CreateRedisClient(ctx context.Context, redisConfig RedisConfig) *redis.Client {
-	var redisClient *redis.Client
-
+	var rdb *redis.Client
 	if redisConfig.URL != "" {
 		opt, _ := redis.ParseURL(redisConfig.URL)
-		redisClient = redis.NewClient(opt)
+		rdb = redis.NewClient(opt)
 	} else {
-		redisClient = redis.NewClient(&redis.Options{
+		rdb = redis.NewClient(&redis.Options{
 			Addr: redisConfig.Addr,
 			DB:   redisConfig.DB, // use default DB
 		})
 	}
 
-	redisClient.AddHook(redisotel.NewTracingHook())
+	if err := redisotel.InstrumentTracing(rdb); err != nil {
+		panic(err)
+	}
+	if err := redisotel.InstrumentMetrics(rdb); err != nil {
+		panic(err)
+	}
 
-	return redisClient
+	return rdb
 }
