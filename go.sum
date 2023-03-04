@@ -248,8 +248,8 @@ github.com/labstack/gommon v0.4.0 h1:y7cvthEAEbU0yHOf4axH8ZG2NH8knB9iNSoTO8dyIk8
 github.com/labstack/gommon v0.4.0/go.mod h1:uW6kP17uPlLJsD3ijUYn3/M5bAxtlZhMI6m3MFxTMTM=
 github.com/lightstep/go-expohisto v1.0.0 h1:UPtTS1rGdtehbbAF7o/dhkWLTDI73UifG8LbfQI7cA4=
 github.com/lightstep/go-expohisto v1.0.0/go.mod h1:xDXD0++Mu2FOaItXtdDfksfgxfV0z1TMPa+e/EUd0cs=
-github.com/lightstep/otel-launcher-go v1.13.4 h1:TDM5zIHooWQUnoDfyMD7b8KsVOzMH45y5BvEOoLvRSI=
-github.com/lightstep/otel-launcher-go v1.13.4/go.mod h1:kpONihlQBTsFOGS0zXJr04o77wl5zHcmCC5BtAcjkyU=
+github.com/lightstep/otel-launcher-go v1.13.0 h1:4wr0QYK9KAJfHLLKJwSTNyWQCsjQ/1zFAziS3kQ80Ww=
+github.com/lightstep/otel-launcher-go v1.13.0/go.mod h1:/gb4SFUw2to4vaaK9v5D2vYD2FdQVa+71MtrSlcmJ5k=
 github.com/lightstep/otel-launcher-go/lightstep/instrumentation v1.13.4 h1:VqZXAxI0jaSoozAxhJEI4qRV9NQlCWAensn8pv28+6w=
 github.com/lightstep/otel-launcher-go/lightstep/instrumentation v1.13.4/go.mod h1:z2ufB83qFVl1bf9sflaftOwaEBCe9JZ1dBPzx1khYAE=
 github.com/lightstep/otel-launcher-go/lightstep/sdk/metric v1.13.4 h1:uIgydKOqkf1UbkYc1aqsl2sF0Zix6LKwt5qxPAoqDGo=
