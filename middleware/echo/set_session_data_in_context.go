@@ -6,9 +6,13 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// SetUserInContext sets the user in the request context
+const (
+	sessionDataKey = "session_data"
+)
+
+// SetSessionDataInContext sets the user in the request context
 // It does not fail or return an error in case the token is not found
-func SetUserInContext(withKey string) echo.MiddlewareFunc {
+func SetSessionDataInContext() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(ctx echo.Context) error {
 			// The header is set at the proxy level, so we can trust it
@@ -20,12 +24,14 @@ func SetUserInContext(withKey string) echo.MiddlewareFunc {
 			}
 
 			decodedToken, _ := jwt.ParseWithClaims(authHeader, &models.FeelgoodJWTClaims{}, nil)
-			user := models.User{
-				UID:   decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.UID,
-				Email: &decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Email,
-				Type:  &decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Type,
+			sessionData := models.SessionData{
+				UID:       decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.UID,
+				Email:     decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Email,
+				Token:     authHeader,
+				UserType:  decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Type,
+				UserRoles: nil,
 			}
-			ctx.Set(withKey, user)
+			ctx.Set(sessionDataKey, sessionData)
 
 			return next(ctx)
 		}
