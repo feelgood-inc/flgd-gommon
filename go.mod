@@ -65,9 +65,9 @@ require (
 	github.com/klauspost/compress v1.16.0 // indirect
 	github.com/labstack/gommon v0.4.0 // indirect
 	github.com/lightstep/go-expohisto v1.0.0 // indirect
-	github.com/lightstep/otel-launcher-go/lightstep/instrumentation v1.13.4 // indirect
-	github.com/lightstep/otel-launcher-go/lightstep/sdk/metric v1.13.4 // indirect
-	github.com/lightstep/otel-launcher-go/pipelines v1.13.4 // indirect
+	github.com/lightstep/otel-launcher-go/lightstep/instrumentation v1.13.0 // indirect
+	github.com/lightstep/otel-launcher-go/lightstep/sdk/metric v1.13.0 // indirect
+	github.com/lightstep/otel-launcher-go/pipelines v1.13.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20230110061619-bbe2e5e100de // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
