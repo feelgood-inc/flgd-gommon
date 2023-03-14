@@ -31,9 +31,9 @@ func GetAmountsBreakdownForAppointmentCancellation(payload GetAmountsBreakdownFo
 	return breakdownForPercentage(payload.AmountPayed, percentageToReimburseBeforeThreshold, payload.PlatformFee), nil
 }
 
-func CheckIfIsCancelledBeforeThreshold(appointmentScheduledStartDateTime time.Time, threshold float64) bool {
-	hoursToAppointment := appointmentScheduledStartDateTime.UTC().Sub(time.Now().UTC()).Hours()
-	if hoursToAppointment < threshold {
+func CheckIfIsCancelledBeforeThreshold(cancelledAt time.Time, appointmentScheduledStartDateTime time.Time, threshold float64) bool {
+	maximumCancellationTime := appointmentScheduledStartDateTime.Add(-time.Duration(threshold) * time.Hour).UTC()
+	if cancelledAt.UTC().Before(maximumCancellationTime) {
 		return true
 	}
 
