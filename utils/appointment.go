@@ -31,6 +31,15 @@ func GetAmountsBreakdownForAppointmentCancellation(payload GetAmountsBreakdownFo
 	return breakdownForPercentage(payload.AmountPayed, percentageToReimburseBeforeThreshold, payload.PlatformFee), nil
 }
 
+func CheckIfIsCancelledBeforeThreshold(appointmentScheduledStartDateTime time.Time, threshold float64) bool {
+	hoursToAppointment := appointmentScheduledStartDateTime.UTC().Sub(time.Now().UTC()).Hours()
+	if hoursToAppointment < threshold {
+		return true
+	}
+
+	return false
+}
+
 func breakdownForPercentage(amountPayed, percentage, platformFee float64) AmountsBreakdown {
 	percentageToReimburse := percentage
 	platformFeePercentage := platformFee
