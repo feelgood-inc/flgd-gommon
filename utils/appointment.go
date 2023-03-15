@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"math"
 	"time"
 )
 
@@ -45,7 +46,7 @@ func breakdownForPercentage(amountPayed, percentage, platformFee float64) Amount
 	percentageToReimburse := percentage
 	platformFeePercentage := platformFee
 
-	reimbursementAmount := amountPayed * percentageToReimburse
+	reimbursementAmount := math.Ceil(amountPayed * percentageToReimburse)
 	remainingAmount := amountPayed - reimbursementAmount
 	paymentToPractitioner := remainingAmount * (1 - platformFeePercentage)
 	paymentToPlatform := remainingAmount * platformFeePercentage
