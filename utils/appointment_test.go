@@ -73,3 +73,23 @@ func (s *appointmentsTestSuite) TestGetAmountsBreakdownForAppointmentCancellatio
 	s.Equal(float64(10), amountsBreakdown.ReimbursementAmount)
 	s.Equal(float64(9), amountsBreakdown.PlatformFeeAmount)
 }
+
+func (s *appointmentsTestSuite) TestGetPercentageToReimburse_WhenAppointmentIsCancelledBeforeThreshold() {
+	cancelledAt := time.Now().UTC()
+	startTime := time.Now().UTC().Add(25 * time.Hour)
+	threshold := 24.0
+
+	percentage := GetPercentageToReimburse(cancelledAt, startTime, threshold)
+
+	s.Equal(percentageToReimburseBeforeThreshold, percentage)
+}
+
+func (s *appointmentsTestSuite) TestGetPercentageToReimburse_WhenAppointmentIsCancelledAfterThreshold() {
+	cancelledAt := time.Now().UTC()
+	startTime := time.Now().UTC().Add(12 * time.Hour)
+	threshold := 24.0
+
+	percentage := GetPercentageToReimburse(cancelledAt, startTime, threshold)
+
+	s.Equal(percentageToReimburseAfterThreshold, percentage)
+}

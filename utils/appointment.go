@@ -42,6 +42,14 @@ func CheckIfIsCancelledBeforeThreshold(cancelledAt time.Time, appointmentSchedul
 	return false
 }
 
+func GetPercentageToReimburse(cancelledAt time.Time, appointmentScheduledStartDateTime time.Time, threshold float64) float64 {
+	if CheckIfIsCancelledBeforeThreshold(cancelledAt, appointmentScheduledStartDateTime, threshold) {
+		return percentageToReimburseBeforeThreshold
+	}
+
+	return percentageToReimburseAfterThreshold
+}
+
 func breakdownForPercentage(amountPayed, percentage, platformFee float64) AmountsBreakdown {
 	percentageToReimburse := percentage
 	platformFeePercentage := platformFee
