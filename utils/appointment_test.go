@@ -35,10 +35,10 @@ func (s *appointmentsTestSuite) TestCheckIfIsCancelledBeforeThreshold_WhenAppoin
 }
 
 func (s *appointmentsTestSuite) TestGetAmountsBreakdownForAppointmentCancellation_WhenAppointmentIsCancelledBeforeThreshold() {
-	amountPayed := 100.0
+	amountPayed := 30000.0
 	scheduledStartDateTime := time.Now().UTC().Add(25 * time.Hour)
 	hoursThreshold := 24.0
-	platformFee := 0.1
+	platformFee := 0.15
 	cancellationAt := time.Now().UTC()
 
 	amountsBreakdown, _ := GetAmountsBreakdownForAppointmentCancellation(GetAmountsBreakdownForAppointmentCancellationPayload{
@@ -49,9 +49,9 @@ func (s *appointmentsTestSuite) TestGetAmountsBreakdownForAppointmentCancellatio
 		CancellationAt:         cancellationAt,
 	})
 
-	s.Equal(float64(18), amountsBreakdown.PractitionerPaymentAmount)
-	s.Equal(float64(80), amountsBreakdown.ReimbursementAmount)
-	s.Equal(float64(2), amountsBreakdown.PlatformFeeAmount)
+	s.Equal(float64(5100), amountsBreakdown.PractitionerPaymentAmount)
+	s.Equal(float64(24000), amountsBreakdown.ReimbursementAmount)
+	s.Equal(float64(900), amountsBreakdown.PlatformFeeAmount)
 }
 
 func (s *appointmentsTestSuite) TestGetAmountsBreakdownForAppointmentCancellation_WhenAppointmentIsCancelledAfterThreshold() {
