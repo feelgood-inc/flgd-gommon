@@ -25,6 +25,13 @@ type Appointment struct {
 	Practitioner           *Practitioner `json:"practitioner,omitempty"`
 	Patient                *User         `json:"patient,omitempty"`
 	PracticeID             *int64        `json:"practice_id"`
+
+	PlatformFeeAsPercentage                     float64   `json:"platform_fee_as_percentage"`
+	PlatformFeeAsFixedAmount                    float64   `json:"platform_fee_as_fixed_amount"`
+	CancellationThresholdInHours                int64     `json:"cancellation_threshold_in_hours"`
+	CancellationThresholdTime                   time.Time `json:"cancellation_threshold_time"`
+	RefundPercentageBeforeCancellationThreshold float64   `json:"refund_percentage_before_cancellation_threshold"`
+	RefundPercentageAfterCancellationThreshold  float64   `json:"refund_percentage_after_cancellation_threshold"`
 }
 
 type AppointmentAggregated struct {
@@ -47,4 +54,11 @@ type AppointmentAggregated struct {
 	Timezone               string        `json:"timezone"`
 	PractitionerUID        string        `json:"practitioner_uid"`
 	PatientUID             string        `json:"patient_uid"`
+
+	PlatformFeeAsPercentage                     float64   `json:"platform_fee_as_percentage"`
+	PlatformFeeAsFixedAmount                    float64   `json:"platform_fee_as_fixed_amount"`
+	CancellationThresholdInHours                int64     `json:"cancellation_threshold_in_hours"`
+	CancellationThresholdTime                   time.Time `json:"cancellation_threshold_time"`
+	RefundPercentageBeforeCancellationThreshold float64   `json:"refund_percentage_before_cancellation_threshold"`
+	RefundPercentageAfterCancellationThreshold  float64   `json:"refund_percentage_after_cancellation_threshold"`
 }
