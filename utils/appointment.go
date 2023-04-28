@@ -12,25 +12,30 @@ type AmountsBreakdown struct {
 }
 
 type GetAmountsBreakdownForAppointmentCancellationPayload struct {
-	AmountPayed            float64   `json:"amount_payed" validate:"required gte=0"`
-	ScheduledStartDateTime time.Time `json:"scheduled_start_date_time" validate:"required"`
-	HoursThreshold         float64   `json:"hours_threshold" validate:"required gte=0"`
-	PlatformFee            float64   `json:"platform_fee" validate:"required gte=0 lte=1"`
-	CancellationAt         time.Time `json:"cancellation_at" validate:"required"`
+	AmountPayed                       float64   `json:"amount_payed" validate:"required gte=0"`
+	ScheduledStartDateTime            time.Time `json:"scheduled_start_date_time" validate:"required"`
+	HoursThreshold                    float64   `json:"hours_threshold" validate:"required gte=0"`
+	PlatformFee                       float64   `json:"platform_fee" validate:"required gte=0 lte=1"`
+	CancellationAt                    time.Time `json:"cancellation_at" validate:"required"`
+	PercentageToRefundBeforeThreshold float64   `json:"percentage_to_refund_before_threshold" validate:"required gte=0 lte=1"`
+	PercentageToRefundAfterThreshold  float64   `json:"percentage_to_refund_after_threshold" validate:"required gte=0 lte=1"`
 }
 
-const (
-	percentageToReimburseAfterThreshold  = 0.1
-	percentageToReimburseBeforeThreshold = 0.8
-)
+type GetPercentageToReimbursePayload struct {
+	CancellationAt                    time.Time `json:"cancellation_at" validate:"required"`
+	AppointmentScheduledDateTime      time.Time `json:"appointment_scheduled_date_time" validate:"required"`
+	HoursThreshold                    float64   `json:"hours_threshold" validate:"required gte=0"`
+	PercentageToRefundBeforeThreshold float64   `json:"percentage_to_refund_before_threshold" validate:"required gte=0 lte=1"`
+	PercentageToRefundAfterThreshold  float64   `json:"percentage_to_refund_after_threshold" validate:"required gte=0 lte=1"`
+}
 
 func GetAmountsBreakdownForAppointmentCancellation(payload GetAmountsBreakdownForAppointmentCancellationPayload) (AmountsBreakdown, error) {
 	isBeforeThreshold := CheckIfIsCancelledBeforeThreshold(payload.CancellationAt, payload.ScheduledStartDateTime, payload.HoursThreshold)
 	if isBeforeThreshold {
-		return breakdownForPercentage(payload.AmountPayed, percentageToReimburseBeforeThreshold, payload.PlatformFee), nil
+		return breakdownForPercentage(payload.AmountPayed, payload.PercentageToRefundBeforeThreshold/100, payload.PlatformFee), nil
 	}
 
-	return breakdownForPercentage(payload.AmountPayed, percentageToReimburseAfterThreshold, payload.PlatformFee), nil
+	return breakdownForPercentage(payload.AmountPayed, payload.PercentageToRefundAfterThreshold/100, payload.PlatformFee), nil
 }
 
 func CheckIfIsCancelledBeforeThreshold(cancelledAt time.Time, appointmentScheduledStartDateTime time.Time, threshold float64) bool {
@@ -42,12 +47,12 @@ func CheckIfIsCancelledBeforeThreshold(cancelledAt time.Time, appointmentSchedul
 	return false
 }
 
-func GetPercentageToReimburse(cancelledAt time.Time, appointmentScheduledStartDateTime time.Time, threshold float64) float64 {
-	if CheckIfIsCancelledBeforeThreshold(cancelledAt, appointmentScheduledStartDateTime, threshold) {
-		return percentageToReimburseBeforeThreshold
+func GetPercentageToReimburse(payload GetPercentageToReimbursePayload) float64 {
+	if CheckIfIsCancelledBeforeThreshold(payload.CancellationAt, payload.AppointmentScheduledDateTime, payload.HoursThreshold) {
+		return payload.PercentageToRefundBeforeThreshold
 	}
 
-	return percentageToReimburseAfterThreshold
+	return payload.PercentageToRefundAfterThreshold
 }
 
 func breakdownForPercentage(amountPayed, percentage, platformFee float64) AmountsBreakdown {
