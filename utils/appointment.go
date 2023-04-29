@@ -32,10 +32,10 @@ type GetPercentageToReimbursePayload struct {
 func GetAmountsBreakdownForAppointmentCancellation(payload GetAmountsBreakdownForAppointmentCancellationPayload) (AmountsBreakdown, error) {
 	isBeforeThreshold := CheckIfIsCancelledBeforeThreshold(payload.CancellationAt, payload.ScheduledStartDateTime, payload.HoursThreshold)
 	if isBeforeThreshold {
-		return breakdownForPercentage(payload.AmountPayed, payload.PercentageToRefundBeforeThreshold/100, payload.PlatformFee), nil
+		return breakdownForPercentage(payload.AmountPayed, payload.PercentageToRefundBeforeThreshold/100, payload.PlatformFee/100), nil
 	}
 
-	return breakdownForPercentage(payload.AmountPayed, payload.PercentageToRefundAfterThreshold/100, payload.PlatformFee), nil
+	return breakdownForPercentage(payload.AmountPayed, payload.PercentageToRefundAfterThreshold/100, payload.PlatformFee/100), nil
 }
 
 func CheckIfIsCancelledBeforeThreshold(cancelledAt time.Time, appointmentScheduledStartDateTime time.Time, threshold float64) bool {
