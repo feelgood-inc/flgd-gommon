@@ -87,8 +87,8 @@ type PublicPractitionerAggregated struct {
 	Slug                string      `json:"slug"`
 }
 
-func (p *PublicPractitioner) ToPublicPractitioner() *PublicPractitioner {
-	return &PublicPractitioner{
+func (p *PublicPractitioner) ToPublicPractitioner() PublicPractitioner {
+	return PublicPractitioner{
 		ID:             p.ID,
 		UID:            p.UID,
 		FirstName:      p.FirstName,
@@ -103,8 +103,8 @@ func (p *PublicPractitioner) ToPublicPractitioner() *PublicPractitioner {
 	}
 }
 
-func (p *PractitionerAggregated) ToPublicPractitionerAggregated() *PublicPractitionerAggregated {
-	return &PublicPractitionerAggregated{
+func (p *PractitionerAggregated) ToPublicPractitionerAggregated() PublicPractitionerAggregated {
+	return PublicPractitionerAggregated{
 		ID:                  p.ID,
 		UID:                 p.UID,
 		FirstName:           p.FirstName,
