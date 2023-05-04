@@ -53,3 +53,73 @@ type PractitionerAggregated struct {
 	Slug                string      `json:"slug"`
 	Status              string      `json:"status"`
 }
+
+type PublicPractitioner struct {
+	ID             uint64 `json:"id"`
+	UID            string `json:"uid"`
+	FirstName      string `json:"first_name"`
+	SecondName     string `json:"second_name"`
+	LastName       string `json:"last_name"`
+	SecondLastName string `json:"second_last_name"`
+	FullName       string `json:"full_name"`
+	RegistryID     string `json:"registry_id"`
+	Image          string `json:"image"`
+	Gender         string `json:"gender"`
+	Bio            string `json:"bio"`
+}
+
+type PublicPractitionerAggregated struct {
+	ID                  uint64      `json:"id"`
+	UID                 string      `json:"uid"`
+	FirstName           string      `json:"first_name"`
+	SecondName          string      `json:"second_name"`
+	LastName            string      `json:"last_name"`
+	SecondLastName      string      `json:"second_last_name"`
+	FullName            string      `json:"full_name"`
+	RegistryID          string      `json:"registry_id"`
+	Image               string      `json:"image"`
+	Gender              string      `json:"gender"`
+	Bio                 string      `json:"bio"`
+	PracticeUniversity  *University `json:"practice_university"`
+	SpecialtyUniversity *University `json:"specialty_university"`
+	Practice            *Practice   `json:"practice"`
+	Specialty           *Specialty  `json:"specialty"`
+	Slug                string      `json:"slug"`
+}
+
+func (p *PublicPractitioner) ToPublicPractitioner() *PublicPractitioner {
+	return &PublicPractitioner{
+		ID:             p.ID,
+		UID:            p.UID,
+		FirstName:      p.FirstName,
+		SecondName:     p.SecondName,
+		LastName:       p.LastName,
+		SecondLastName: p.SecondLastName,
+		FullName:       p.FullName,
+		RegistryID:     p.RegistryID,
+		Image:          p.Image,
+		Gender:         p.Gender,
+		Bio:            p.Bio,
+	}
+}
+
+func (p *PractitionerAggregated) ToPublicPractitionerAggregated() *PublicPractitionerAggregated {
+	return &PublicPractitionerAggregated{
+		ID:                  p.ID,
+		UID:                 p.UID,
+		FirstName:           p.FirstName,
+		SecondName:          p.SecondName,
+		LastName:            p.LastName,
+		SecondLastName:      p.SecondLastName,
+		FullName:            p.FullName,
+		RegistryID:          p.RegistryID,
+		Image:               p.Image,
+		Gender:              p.Gender,
+		Bio:                 p.Bio,
+		PracticeUniversity:  p.PracticeUniversity,
+		SpecialtyUniversity: p.SpecialtyUniversity,
+		Practice:            p.Practice,
+		Specialty:           p.Specialty,
+		Slug:                p.Slug,
+	}
+}

@@ -14,8 +14,6 @@ func TestAppointmentModel(t *testing.T) {
 		ScheduledEndDateTime:   nil,
 		Status:                 "",
 		EndedAt:                nil,
-		AvailableInsurances:    nil,
-		AvailableServices:      nil,
 		InternalID:             "",
 		DurationInSeconds:      0,
 		ElapsedTimeInSeconds:   0,
