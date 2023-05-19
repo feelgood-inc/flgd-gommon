@@ -52,7 +52,3 @@ func (u *User) ToNonPublicUser() *NonPublicUser {
 		FullName:       u.FullName,
 	}
 }
-
-func (u *User) IsZero() bool {
-	return *u == User{}
-}
