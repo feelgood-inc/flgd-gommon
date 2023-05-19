@@ -71,7 +71,7 @@ func Internal(ctx context.Context, cfg *InternalClientConfig) (*resty.Client, er
 		SetBody(map[string]string{
 			"service_name": cfg.ServiceName,
 		}).
-		Post(cfg.AuthMSHost + "/login-internal-ms")
+		Post(cfg.AuthMSHost + "/auth/login-internal-ms")
 
 	if err != nil {
 		return nil, err
