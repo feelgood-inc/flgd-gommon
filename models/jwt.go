@@ -12,12 +12,12 @@ type FeelgoodJWTPayload struct {
 }
 
 type FeelgoodJWTCustomClaims struct {
-	Email     string `json:"email"`
-	Type      string `json:"type"`
-	UID       string `json:"uid"`
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Roles     string `json:"roles"`
+	Email     string   `json:"email"`
+	Type      string   `json:"type"`
+	UID       string   `json:"uid"`
+	FirstName string   `json:"first_name"`
+	LastName  string   `json:"last_name"`
+	Roles     []string `json:"roles"`
 }
 
 type FeelgoodJWTClaims struct {

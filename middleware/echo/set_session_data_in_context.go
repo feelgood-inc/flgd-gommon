@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"encoding/json"
 	"github.com/feelgood-inc/flgd-gommon/models"
 	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
@@ -25,18 +24,12 @@ func SetSessionDataInContext() echo.MiddlewareFunc {
 			}
 
 			decodedToken, _ := jwt.ParseWithClaims(authHeader, &models.FeelgoodJWTClaims{}, nil)
-			// Decode an array of strings from a string
-			var roles []string
-			err := json.Unmarshal([]byte(decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Roles), &roles)
-			if err != nil {
-				return err
-			}
 			sessionData := models.SessionData{
 				UID:       decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.UID,
 				Email:     decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Email,
 				Token:     authHeader,
 				UserType:  decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Type,
-				UserRoles: roles,
+				UserRoles: decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Roles,
 			}
 			ctx.Set(sessionDataKey, sessionData)
 
