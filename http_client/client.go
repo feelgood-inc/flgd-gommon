@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/feelgood-inc/flgd-gommon/models"
+	"github.com/feelgood-inc/flgd-gommon/utils"
 	"os"
 	"time"
 
@@ -82,7 +83,7 @@ func Internal(ctx context.Context, cfg *InternalClientConfig) (*resty.Client, er
 	}
 
 	var loginData models.LoginData
-	err = FeelgoodResponseToStruct(resp, &loginData)
+	err = utils.FeelgoodResponseToStruct(resp, &loginData)
 	if err != nil {
 		return nil, err
 	}

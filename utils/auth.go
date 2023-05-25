@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/dgraph-io/ristretto"
-	httpclient "github.com/feelgood-inc/flgd-gommon/http_client"
 	"github.com/feelgood-inc/flgd-gommon/models"
 	"github.com/go-resty/resty/v2"
 	"net/http"
@@ -26,8 +25,6 @@ func CheckIfRequestIsAuthenticated(req *http.Request) (bool, *string) {
 	authHeader := req.Header.Get("Authorization")
 	if authHeader != "" {
 		isAuthenticated = true
-		println("Token in header")
-		println(authHeader)
 		return isAuthenticated, &authHeader
 	}
 
@@ -38,8 +35,6 @@ func CheckIfRequestIsAuthenticated(req *http.Request) (bool, *string) {
 	}
 	if cookie.String() != "" {
 		isAuthenticated = true
-		println("Token in cookie")
-		println(cookie.String())
 		return isAuthenticated, &cookie.Value
 	}
 
@@ -91,7 +86,7 @@ func GetInternalToken(ctx context.Context, config *GetInternalTokenConfig) (stri
 	}
 
 	var loginData models.LoginData
-	err = httpclient.FeelgoodResponseToStruct(resp, &loginData)
+	err = FeelgoodResponseToStruct(resp, &loginData)
 	if err != nil {
 		return "", err
 	}

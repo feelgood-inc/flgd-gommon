@@ -2,6 +2,7 @@ package httpclient
 
 import (
 	"github.com/feelgood-inc/flgd-gommon/models"
+	"github.com/feelgood-inc/flgd-gommon/utils"
 	"github.com/go-resty/resty/v2"
 	"github.com/stretchr/testify/assert"
 	"net/http"
@@ -31,7 +32,7 @@ func TestFeelgoodResponseToStructOK(t *testing.T) {
 	}
 
 	var appointment models.Appointment
-	_ = FeelgoodResponseToStruct(&response, &appointment)
+	_ = utils.FeelgoodResponseToStruct(&response, &appointment)
 
 	assert.IsType(t, models.Appointment{}, appointment)
 }
