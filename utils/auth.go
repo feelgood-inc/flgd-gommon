@@ -50,6 +50,14 @@ func SetInternalAuthTokenInLocalCache(localCache *ristretto.Cache, token string)
 	localCache.Set("internal_auth_token", token, 1)
 }
 
+func GetInternalAuthTokenFromLocalCache(localCache *ristretto.Cache) string {
+	token, found := localCache.Get("internal_auth_token")
+	if !found {
+		return ""
+	}
+	return token.(string)
+}
+
 func GetInternalToken(ctx context.Context, config *GetInternalTokenConfig) (string, error) {
 	customClient := resty.New().
 		SetHeaders(map[string]string{
