@@ -73,6 +73,9 @@ func ConsumeFromTopic(
 		cancel()
 		return
 	}
+
+	logger.Debugf("creating kafka reader for topic %s", topic)
+
 	r := kafka.NewReader(kafka.ReaderConfig{
 		Brokers:                readerConfig.Brokers,
 		GroupID:                groupID,
@@ -99,6 +102,8 @@ func ConsumeFromTopic(
 			cancel()
 		}
 	}()
+
+	logger.Debugf("creating kafka writer for topic %s", topic)
 
 	w := NewWriter(kafka.Writer{
 		Addr:         kafka.TCP(writerConfig.Brokers...),

@@ -1,6 +1,9 @@
 package utils
 
-import "net/http"
+import (
+	"github.com/dgraph-io/ristretto"
+	"net/http"
+)
 
 func CheckIfRequestIsAuthenticated(req *http.Request) (bool, *string) {
 	isAuthenticated := false
@@ -27,4 +30,8 @@ func CheckIfRequestIsAuthenticated(req *http.Request) (bool, *string) {
 	}
 
 	return isAuthenticated, nil
+}
+
+func SetInternalAuthTokenInLocalCache(localCache *ristretto.Cache, token string) {
+	localCache.Set("internal_auth_token", token, 1)
 }
