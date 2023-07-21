@@ -24,11 +24,22 @@ func SetSessionDataInContext() echo.MiddlewareFunc {
 			}
 
 			decodedToken, _ := jwt.ParseWithClaims(authHeader, &models.FeelgoodJWTClaims{}, nil)
+			var email, userType string
+			if decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Email == nil {
+				email = ""
+			} else {
+				email = *decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Email
+			}
+			if decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Type == nil {
+				userType = ""
+			} else {
+				userType = *decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Type
+			}
 			sessionData := models.SessionData{
 				UID:       decodedToken.Claims.(*models.FeelgoodJWTClaims).User.UID,
-				Email:     *decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Email,
+				Email:     email,
 				Token:     authHeader,
-				UserType:  *decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Type,
+				UserType:  userType,
 				UserRoles: decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Roles,
 			}
 			ctx.Set(sessionDataKey, sessionData)
