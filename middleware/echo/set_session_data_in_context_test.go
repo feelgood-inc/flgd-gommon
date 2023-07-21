@@ -13,8 +13,8 @@ func TestDecodesTokenCorrectly(t *testing.T) {
 
 	decodedToken, err := jwt.ParseWithClaims(token, &models.FeelgoodJWTClaims{}, nil)
 
-	print(decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Roles)
+	print(decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Roles)
 
 	assert.Error(t, err)
-	assert.Contains(t, decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Roles, "admin")
+	assert.Contains(t, decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Roles, "admin")
 }

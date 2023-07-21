@@ -19,9 +19,9 @@ func SetUserInfo(withKey string) echo.MiddlewareFunc {
 
 			decodedToken, _ := jwt.ParseWithClaims(authHeader, &models.FeelgoodJWTClaims{}, nil)
 			user := models.User{
-				UID:   decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.UID,
-				Email: &decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Email,
-				Type:  &decodedToken.Claims.(*models.FeelgoodJWTClaims).Claims.Type,
+				UID:   decodedToken.Claims.(*models.FeelgoodJWTClaims).User.UID,
+				Email: decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Email,
+				Type:  decodedToken.Claims.(*models.FeelgoodJWTClaims).User.Type,
 			}
 			ctx.Set(withKey, user)
 

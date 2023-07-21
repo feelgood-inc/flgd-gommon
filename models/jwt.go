@@ -21,6 +21,6 @@ type FeelgoodJWTCustomClaims struct {
 }
 
 type FeelgoodJWTClaims struct {
-	Claims FeelgoodJWTCustomClaims `json:"claims"`
+	User User `json:"user"`
 	jwt.StandardClaims
 }
