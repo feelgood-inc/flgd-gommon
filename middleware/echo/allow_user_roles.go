@@ -30,3 +30,27 @@ func AllowUserRoles(roles []string) echo.MiddlewareFunc {
 		}
 	}
 }
+
+func AllowRoles(roles []string) echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(ctx echo.Context) error {
+			sessionData, ok := ctx.Request().Context().Value("session_data").(models.SessionData)
+			if !ok {
+				return ctx.JSON(http.StatusUnauthorized, "Unauthorized")
+			}
+
+			for _, role := range roles {
+				// Check if the user roles contains one of the allowed roles
+				_, ok := lo.Find(sessionData.UserRoles, func(s string) bool {
+					return s == role
+				})
+
+				if ok {
+					return next(ctx)
+				}
+			}
+
+			return ctx.JSON(http.StatusUnauthorized, "Unauthorized")
+		}
+	}
+}
