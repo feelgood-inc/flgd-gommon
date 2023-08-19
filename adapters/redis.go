@@ -27,6 +27,7 @@ func CreateRedisClient(ctx context.Context, redisConfig RedisConfig) *redis.Clie
 	if err := redisotel.InstrumentTracing(rdb); err != nil {
 		panic(err)
 	}
+
 	if err := redisotel.InstrumentMetrics(rdb); err != nil {
 		panic(err)
 	}
