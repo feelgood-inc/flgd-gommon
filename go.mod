@@ -5,13 +5,17 @@ go 1.18
 require (
 	firebase.google.com/go/v4 v4.10.0
 	github.com/avast/retry-go v3.0.0+incompatible
+	github.com/dgraph-io/ristretto v0.1.1
 	github.com/getsentry/sentry-go v0.18.0
+	github.com/go-redis/redismock/v9 v9.0.3
 	github.com/go-resty/resty/v2 v2.7.0
+	github.com/goccy/go-json v0.10.2
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/labstack/echo/v4 v4.10.2
 	github.com/lightstep/otel-launcher-go v1.13.0
 	github.com/redis/go-redis/extra/redisotel/v9 v9.0.2
-	github.com/redis/go-redis/v9 v9.0.3
+	github.com/redis/go-redis/v9 v9.1.0
+	github.com/samber/lo v1.38.1
 	github.com/segmentio/kafka-go v0.4.39
 	github.com/spf13/viper v1.15.0
 	github.com/stretchr/testify v1.8.2
@@ -41,7 +45,6 @@ require (
 	github.com/cenkalti/backoff/v4 v4.2.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/dgraph-io/ristretto v0.1.1 // indirect
 	github.com/dgryski/go-farm v0.0.0-20200201041132-a6ae2369ad13 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
@@ -49,8 +52,6 @@ require (
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
-	github.com/go-redis/redismock/v9 v9.0.3 // indirect
-	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/glog v1.0.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
@@ -85,7 +86,6 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/power-devops/perfstat v0.0.0-20221212215047-62379fc7944b // indirect
 	github.com/redis/go-redis/extra/rediscmd/v9 v9.0.2 // indirect
-	github.com/samber/lo v1.38.1 // indirect
 	github.com/sethvargo/go-envconfig v0.9.0 // indirect
 	github.com/shirou/gopsutil/v3 v3.23.2 // indirect
 	github.com/spf13/afero v1.9.4 // indirect
