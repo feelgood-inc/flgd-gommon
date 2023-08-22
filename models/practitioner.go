@@ -30,6 +30,7 @@ type Practitioner struct {
 	SpecialtyUniversityName string     `json:"specialty_university_name"`
 	Status                  string     `json:"status"`
 	Slug                    string     `json:"slug"`
+	Rating                  float64    `json:"rating"`
 }
 
 type PractitionerAggregated struct {
@@ -52,20 +53,22 @@ type PractitionerAggregated struct {
 	InternalID          string      `json:"internal_id"`
 	Slug                string      `json:"slug"`
 	Status              string      `json:"status"`
+	Rating              float64     `json:"rating"`
 }
 
 type PublicPractitioner struct {
-	ID             uint64 `json:"id"`
-	UID            string `json:"uid"`
-	FirstName      string `json:"first_name"`
-	SecondName     string `json:"second_name"`
-	LastName       string `json:"last_name"`
-	SecondLastName string `json:"second_last_name"`
-	FullName       string `json:"full_name"`
-	RegistryID     string `json:"registry_id"`
-	Image          string `json:"image"`
-	Gender         string `json:"gender"`
-	Bio            string `json:"bio"`
+	ID             uint64  `json:"id"`
+	UID            string  `json:"uid"`
+	FirstName      string  `json:"first_name"`
+	SecondName     string  `json:"second_name"`
+	LastName       string  `json:"last_name"`
+	SecondLastName string  `json:"second_last_name"`
+	FullName       string  `json:"full_name"`
+	RegistryID     string  `json:"registry_id"`
+	Image          string  `json:"image"`
+	Gender         string  `json:"gender"`
+	Bio            string  `json:"bio"`
+	Rating         float64 `json:"rating"`
 }
 
 type PublicPractitionerAggregated struct {
@@ -85,6 +88,7 @@ type PublicPractitionerAggregated struct {
 	Practice            *Practice   `json:"practice"`
 	Specialty           *Specialty  `json:"specialty"`
 	Slug                string      `json:"slug"`
+	Rating              float64     `json:"rating"`
 }
 
 func (p *PublicPractitioner) ToPublicPractitioner() PublicPractitioner {
@@ -100,6 +104,7 @@ func (p *PublicPractitioner) ToPublicPractitioner() PublicPractitioner {
 		Image:          p.Image,
 		Gender:         p.Gender,
 		Bio:            p.Bio,
+		Rating:         p.Rating,
 	}
 }
 
@@ -121,5 +126,6 @@ func (p *PractitionerAggregated) ToPublicPractitionerAggregated() PublicPractiti
 		Practice:            p.Practice,
 		Specialty:           p.Specialty,
 		Slug:                p.Slug,
+		Rating:              p.Rating,
 	}
 }
