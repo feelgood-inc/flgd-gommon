@@ -1,9 +1,11 @@
 package kafka
 
 import (
-	"encoding/json"
+	"context"
 	"fmt"
 	"github.com/feelgood-inc/flgd-gommon/models"
+	"github.com/goccy/go-json"
+	"github.com/segmentio/kafka-go"
 )
 
 func UnmarshalToKafkaMessage(data []byte) (models.KafkaMessage, error) {
@@ -37,6 +39,24 @@ func MarshalKafkaDataToStruct(data []byte, structToMarshal interface{}) error {
 	}
 
 	if err := json.Unmarshal(asBytes, &structToMarshal); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func PublishToDLQ(ctx context.Context, writer *kafka.Writer, dlqTopic string, message models.KafkaMessage, error string) error {
+	message.Error.Error = error
+
+	messageAsBytes, err := json.Marshal(message)
+	if err != nil {
+		return err
+	}
+
+	if err := writer.WriteMessages(ctx, kafka.Message{
+		Value: messageAsBytes,
+		Topic: dlqTopic,
+	}); err != nil {
 		return err
 	}
 
