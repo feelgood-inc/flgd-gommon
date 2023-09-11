@@ -12,6 +12,7 @@ type User struct {
 	Email          *string  `json:"email"`
 	Type           *string  `json:"type"`
 	Roles          []string `json:"roles"`
+	Cellphone      string   `json:"cellphone"`
 	FullName       string   `json:"full_name"`
 }
 
@@ -24,7 +25,6 @@ type NonPublicUser struct {
 	Gender         *string `json:"gender"`
 	Nationality    *string `json:"nationality"`
 	FullName       string  `json:"full_name"`
-	Cellphone      *string `json:"cellphone"`
 }
 
 func (u *User) IsProfileCompleted() bool {
