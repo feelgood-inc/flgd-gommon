@@ -21,9 +21,10 @@ type NonPublicUser struct {
 	SecondName     *string `json:"second_name"`
 	LastName       *string `json:"last_name"`
 	SecondLastName *string `json:"second_last_name"`
-	Gender         *string
-	Nationality    *string
-	FullName       string `json:"full_name"`
+	Gender         *string `json:"gender"`
+	Nationality    *string `json:"nationality"`
+	FullName       string  `json:"full_name"`
+	Cellphone      *string `json:"cellphone"`
 }
 
 func (u *User) IsProfileCompleted() bool {
