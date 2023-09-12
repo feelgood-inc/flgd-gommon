@@ -6,20 +6,31 @@ import (
 )
 
 type SentryConfig struct {
-	DSN              string
-	Env              string
-	TracesSampleRate float64
-	TracesSampler    sentry.TracesSampler
-	EnableTracing    bool
+	DSN                 string
+	Env                 string
+	TracesSampleRate    float64
+	TracesSampler       sentry.TracesSampler
+	EnableTracing       bool
+	EnableProfiling     bool
+	ProfilingSampleRate float64
 }
 
 func CreateSentry(sentryConfig SentryConfig) error {
-	if err := sentry.Init(sentry.ClientOptions{
-		Dsn:              sentryConfig.DSN,
-		Environment:      sentryConfig.Env,
-		TracesSampleRate: sentryConfig.TracesSampleRate,
-		EnableTracing:    sentryConfig.EnableTracing,
-	}); err != nil {
+	options := sentry.ClientOptions{}
+	options.Dsn = sentryConfig.DSN
+	options.Environment = sentryConfig.Env
+	options.TracesSampleRate = sentryConfig.TracesSampleRate
+
+	if sentryConfig.EnableTracing {
+		options.EnableTracing = true
+		options.TracesSampleRate = sentryConfig.TracesSampleRate
+	}
+
+	if sentryConfig.EnableProfiling {
+		options.ProfilesSampleRate = sentryConfig.ProfilingSampleRate
+	}
+
+	if err := sentry.Init(options); err != nil {
 		fmt.Printf("Sentry initialization failed: %v\n", err)
 		return err
 	}

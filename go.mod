@@ -1,12 +1,12 @@
 module github.com/feelgood-inc/flgd-gommon
 
-go 1.19
+go 1.18
 
 require (
 	firebase.google.com/go/v4 v4.12.0
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/dgraph-io/ristretto v0.1.1
-	github.com/getsentry/sentry-go v0.18.0
+	github.com/getsentry/sentry-go v0.24.0
 	github.com/go-redis/redismock/v9 v9.0.3
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/goccy/go-json v0.10.2
