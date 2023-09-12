@@ -22,7 +22,7 @@ func FeelgoodResponseToStruct(response *resty.Response, obj interface{}) error {
 	responseAsBytes := gjson.GetBytes(response.Body(), "data")
 	err := JsonToStruct(responseAsBytes.Raw, &obj)
 	if err != nil {
-		return nil
+		return err
 	}
 
 	return nil
