@@ -6,6 +6,7 @@ import (
 	"github.com/feelgood-inc/flgd-gommon/models"
 	"github.com/goccy/go-json"
 	"github.com/segmentio/kafka-go"
+	"github.com/spf13/viper"
 )
 
 func UnmarshalToKafkaMessage(data []byte) (models.KafkaMessage, error) {
@@ -61,4 +62,13 @@ func PublishToDLQ(ctx context.Context, writer *kafka.Writer, dlqTopic string, me
 	}
 
 	return nil
+}
+
+func BuildDLQTopicForTopic(topic string) string {
+	serviceName := viper.GetString("SERVICE_NAME")
+	if serviceName == "" {
+		return fmt.Sprintf("%s-dlq", topic)
+	}
+
+	return fmt.Sprintf("%s-%s-dlq", topic, serviceName)
 }
