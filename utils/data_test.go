@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"github.com/go-resty/resty/v2"
 	"github.com/stretchr/testify/assert"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"testing"
 )
@@ -51,7 +51,7 @@ func TestFeelgoodResponseToStruct_ValidResponse(t *testing.T) {
 			Status:     "200 OK",
 			StatusCode: 200,
 			Header:     nil,
-			Body:       ioutil.NopCloser(bytes.NewBufferString(jsonStr)),
+			Body:       io.NopCloser(bytes.NewBufferString(jsonStr)),
 		},
 	}
 	var obj TestStruct
@@ -68,7 +68,7 @@ func TestFeelgoodResponseToStruct_InvalidResponse(t *testing.T) {
 			Status:     "500 Internal Server Error",
 			StatusCode: 500,
 			Header:     nil,
-			Body:       ioutil.NopCloser(bytes.NewBufferString(invalidJSONStr)),
+			Body:       io.NopCloser(bytes.NewBufferString(invalidJSONStr)),
 		},
 	}
 	var obj TestStruct
