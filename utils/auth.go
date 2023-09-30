@@ -6,6 +6,7 @@ import (
 	"github.com/dgraph-io/ristretto"
 	"github.com/feelgood-inc/flgd-gommon/models"
 	"github.com/go-resty/resty/v2"
+	"github.com/spf13/viper"
 	"net/http"
 	"time"
 )
@@ -54,6 +55,17 @@ func GetInternalAuthTokenFromLocalCache(localCache *ristretto.Cache) string {
 }
 
 func GetInternalToken(ctx context.Context, config *GetInternalTokenConfig) (string, error) {
+	// Get username and password from environment variables
+	username := viper.GetString("INTERNAL_USER")
+	if username == "" {
+		panic("INTERNAL_USER environment variable not set")
+	}
+
+	password := viper.GetString("INTERNAL_PASSWORD")
+	if password == "" {
+		panic("INTERNAL_PASSWORD environment variable not set")
+	}
+
 	customClient := resty.New().
 		SetHeaders(map[string]string{
 			"Content-Type":     "application/json",
@@ -74,6 +86,8 @@ func GetInternalToken(ctx context.Context, config *GetInternalTokenConfig) (stri
 		SetContext(ctx).
 		SetBody(map[string]string{
 			"service_name": config.ServiceName,
+			"user":         username,
+			"password":     password,
 		}).
 		Post(config.AuthMSHost + "/auth/login-internal-ms")
 
