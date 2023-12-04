@@ -32,6 +32,9 @@ type Appointment struct {
 	CancellationThresholdTime                   time.Time `json:"cancellation_threshold_time"`
 	RefundPercentageBeforeCancellationThreshold float64   `json:"refund_percentage_before_cancellation_threshold"`
 	RefundPercentageAfterCancellationThreshold  float64   `json:"refund_percentage_after_cancellation_threshold"`
+
+	RescheduledToAppointmentID   *int64 `json:"rescheduled_to_appointment_id"`
+	RescheduledFromAppointmentID *int64 `json:"rescheduled_from_appointment_id"`
 }
 
 type AppointmentAggregated struct {
@@ -61,4 +64,7 @@ type AppointmentAggregated struct {
 	CancellationThresholdTime                   time.Time `json:"cancellation_threshold_time"`
 	RefundPercentageBeforeCancellationThreshold float64   `json:"refund_percentage_before_cancellation_threshold"`
 	RefundPercentageAfterCancellationThreshold  float64   `json:"refund_percentage_after_cancellation_threshold"`
+
+	RescheduledToAppointmentID   *int64 `json:"rescheduled_to_appointment_id"`
+	RescheduledFromAppointmentID *int64 `json:"rescheduled_from_appointment_id"`
 }
