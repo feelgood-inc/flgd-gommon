@@ -3,6 +3,7 @@ package models
 type HealthCareFacility struct {
 	ID        uint    `json:"id"`
 	UID       string  `json:"uid"`
+	Type      string  `json:"type"`
 	Name      string  `json:"name"`
 	Street    string  `json:"address"`
 	Number    string  `json:"number"`
