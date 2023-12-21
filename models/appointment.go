@@ -25,6 +25,7 @@ type Appointment struct {
 	Practitioner           *Practitioner `json:"practitioner,omitempty"`
 	Patient                *User         `json:"patient,omitempty"`
 	PracticeID             *int64        `json:"practice_id"`
+	HealthCareFacilityID   int64         `json:"health_care_facility_id"`
 
 	PlatformFeeAsPercentage                     float64   `json:"platform_fee_as_percentage"`
 	PlatformFeeAsFixedAmount                    float64   `json:"platform_fee_as_fixed_amount"`
@@ -38,25 +39,27 @@ type Appointment struct {
 }
 
 type AppointmentAggregated struct {
-	ID                     int64         `json:"id"`
-	Patient                *User         `json:"patient"`
-	Practitioner           *Practitioner `json:"practitioner"`
-	ScheduledStartDateTime *time.Time    `json:"scheduled_start_date_time"`
-	ScheduledEndDateTime   *time.Time    `json:"scheduled_end_date_time"`
-	Status                 string        `json:"status"`
-	EndedAt                *time.Time    `json:"ended_at"`
-	InternalID             string        `json:"internal_id"`
-	DurationInSeconds      int64         `json:"duration_in_seconds"`
-	ElapsedTimeInSeconds   int64         `json:"elapsed_time_in_seconds"`
-	CreatedAt              *time.Time    `json:"created_at"`
-	UpdatedAt              *time.Time    `json:"updated_at"`
-	BookedAt               *time.Time    `json:"booked_at"`
-	ReservedAt             *time.Time    `json:"reserved_at"`
-	Price                  float64       `json:"price"`
-	BatchID                string        `json:"batch_id"`
-	Timezone               string        `json:"timezone"`
-	PractitionerUID        string        `json:"practitioner_uid"`
-	PatientUID             string        `json:"patient_uid"`
+	ID                     int64               `json:"id"`
+	Patient                *User               `json:"patient"`
+	Practitioner           *Practitioner       `json:"practitioner"`
+	ScheduledStartDateTime *time.Time          `json:"scheduled_start_date_time"`
+	ScheduledEndDateTime   *time.Time          `json:"scheduled_end_date_time"`
+	Status                 string              `json:"status"`
+	EndedAt                *time.Time          `json:"ended_at"`
+	InternalID             string              `json:"internal_id"`
+	DurationInSeconds      int64               `json:"duration_in_seconds"`
+	ElapsedTimeInSeconds   int64               `json:"elapsed_time_in_seconds"`
+	CreatedAt              *time.Time          `json:"created_at"`
+	UpdatedAt              *time.Time          `json:"updated_at"`
+	BookedAt               *time.Time          `json:"booked_at"`
+	ReservedAt             *time.Time          `json:"reserved_at"`
+	Price                  float64             `json:"price"`
+	BatchID                string              `json:"batch_id"`
+	Timezone               string              `json:"timezone"`
+	PractitionerUID        string              `json:"practitioner_uid"`
+	PatientUID             string              `json:"patient_uid"`
+	HealthCareFacilityID   int64               `json:"health_care_facility_id"`
+	HealthCareFacility     *HealthCareFacility `json:"health_care_facility"`
 
 	PlatformFeeAsPercentage                     float64   `json:"platform_fee_as_percentage"`
 	PlatformFeeAsFixedAmount                    float64   `json:"platform_fee_as_fixed_amount"`
