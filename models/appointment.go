@@ -4,11 +4,11 @@ import "time"
 
 type Appointment struct {
 	// Group the int64 fields together
-	ID                           int64 `json:"id"`
-	DurationInSeconds            int64 `json:"duration_in_seconds"`
-	ElapsedTimeInSeconds         int64 `json:"elapsed_time_in_seconds"`
-	CancellationThresholdInHours int64 `json:"cancellation_threshold_in_hours"`
-	HealthCareFacilityID         int64 `json:"health_care_facility_id"`
+	ID                           int64  `json:"id"`
+	DurationInSeconds            int64  `json:"duration_in_seconds"`
+	ElapsedTimeInSeconds         int64  `json:"elapsed_time_in_seconds"`
+	CancellationThresholdInHours int64  `json:"cancellation_threshold_in_hours"`
+	HealthCareFacilityID         string `json:"health_care_facility_id"`
 
 	// Group the *time.Time fields together
 	ScheduledStartDateTime    *time.Time `json:"scheduled_start_date_time"`
@@ -48,17 +48,15 @@ type Appointment struct {
 	// Group the *struct fields together
 	Practitioner *Practitioner `json:"practitioner,omitempty"`
 	Patient      *User         `json:"patient,omitempty"`
-
-	FacilityID uint `json:"facility_id"`
 }
 
 type AppointmentAggregated struct {
 	// Similar grouping for AppointmentAggregated
-	ID                           int64 `json:"id"`
-	DurationInSeconds            int64 `json:"duration_in_seconds"`
-	ElapsedTimeInSeconds         int64 `json:"elapsed_time_in_seconds"`
-	CancellationThresholdInHours int64 `json:"cancellation_threshold_in_hours"`
-	HealthCareFacilityID         int64 `json:"health_care_facility_id"`
+	ID                           int64  `json:"id"`
+	DurationInSeconds            int64  `json:"duration_in_seconds"`
+	ElapsedTimeInSeconds         int64  `json:"elapsed_time_in_seconds"`
+	CancellationThresholdInHours int64  `json:"cancellation_threshold_in_hours"`
+	HealthCareFacilityID         string `json:"health_care_facility_id"`
 
 	ScheduledStartDateTime    *time.Time `json:"scheduled_start_date_time"`
 	ScheduledEndDateTime      *time.Time `json:"scheduled_end_date_time"`
