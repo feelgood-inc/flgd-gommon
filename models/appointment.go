@@ -48,6 +48,8 @@ type Appointment struct {
 	// Group the *struct fields together
 	Practitioner *Practitioner `json:"practitioner,omitempty"`
 	Patient      *User         `json:"patient,omitempty"`
+
+	FacilityID uint `json:"facility_id"`
 }
 
 type AppointmentAggregated struct {
@@ -84,4 +86,5 @@ type AppointmentAggregated struct {
 	PractitionerUID string `json:"practitioner_uid"`
 	PatientUID      string `json:"patient_uid"`
 	Type            string `json:"type"`
+	FacilityID      uint   `json:"facility_id"`
 }
