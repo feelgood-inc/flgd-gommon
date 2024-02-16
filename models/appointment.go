@@ -65,7 +65,7 @@ type AppointmentAggregated struct {
 	UpdatedAt                 *time.Time `json:"updated_at"`
 	BookedAt                  *time.Time `json:"booked_at"`
 	ReservedAt                *time.Time `json:"reserved_at"`
-	CancellationThresholdTime time.Time  `json:"cancellation_threshold_time"`
+	CancellationThresholdTime time.Time  `json:"cancellation_threshold_time,omitempty"`
 
 	Price                                       float64 `json:"price"`
 	PlatformFeeAsPercentage                     float64 `json:"platform_fee_as_percentage"`
@@ -84,5 +84,4 @@ type AppointmentAggregated struct {
 	PractitionerUID string `json:"practitioner_uid"`
 	PatientUID      string `json:"patient_uid"`
 	Type            string `json:"type"`
-	FacilityID      uint   `json:"facility_id"`
 }
